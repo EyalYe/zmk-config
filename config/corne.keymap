@@ -25,12 +25,12 @@
         compatible = "zmk,combos";
 
         to_gaming {
-            bindings = <&tog 4>;
+            bindings = <&to 4>;
             key-positions = <12 13 14>;
         };
 
         to_first {
-            bindings = <&tog 0>;
+            bindings = <&to 0>;
             key-positions = <24 25 26>;
         };
     };
