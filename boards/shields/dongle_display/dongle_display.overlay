@@ -14,10 +14,10 @@
         compatible = "sinowealth,sh1106";
         reg = <0x3c>;
         segment-offset = <2>;
-        page-offset = <0>;       
-        height = <64>;           
-        width = <128>;          
+        page-offset = <0>;
+        display-offset = <0>;
+        height = <64>;
+        width = <128>;
     };
 };
-
 
