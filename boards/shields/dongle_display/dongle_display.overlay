@@ -13,10 +13,12 @@
     sh1106: sh1106@3c {
         compatible = "sinowealth,sh1106";
         reg = <0x3c>;
+
         segment-offset = <2>;
         page-offset = <0>;
         display-offset = <0>;
-        multiplex-ratio = <63>
+        multiplex-ratio = <63>;
+
         height = <64>;
         width = <128>;
     };
