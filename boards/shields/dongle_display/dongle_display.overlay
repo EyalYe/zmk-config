@@ -14,6 +14,9 @@
         compatible = "sinowealth,sh1106";
         reg = <0x3c>;
         segment-offset = <2>;
+        page-offset = <0>;       
+        height = <64>;           
+        width = <128>;          
     };
 };
 
