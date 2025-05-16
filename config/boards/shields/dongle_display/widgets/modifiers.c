@@ -42,7 +42,18 @@ struct modifier_symbol ms_shift = {
     .symbol_dsc = &shift_icon,
 };
 
-#if IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_MAC_MODIFIERS)
+LV_IMG_DECLARE(alt_icon);
+struct modifier_symbol ms_alt = {
+    .modifier = MOD_LALT | MOD_RALT,
+    .symbol_dsc = &alt_icon,
+};
+
+LV_IMG_DECLARE(win_icon);
+struct modifier_symbol ms_gui = {
+    .modifier = MOD_LGUI | MOD_RGUI,
+    .symbol_dsc = &win_icon,
+};
+
 LV_IMG_DECLARE(opt_icon);
 struct modifier_symbol ms_opt = {
     .modifier = MOD_LALT | MOD_RALT,
@@ -57,32 +68,11 @@ struct modifier_symbol ms_cmd = {
 
 struct modifier_symbol *modifier_symbols[] = {
     // this order determines the order of the symbols
-    &ms_control,
-    &ms_opt,
     &ms_cmd,
-    &ms_shift
-};
-#else
-LV_IMG_DECLARE(alt_icon);
-struct modifier_symbol ms_alt = {
-    .modifier = MOD_LALT | MOD_RALT,
-    .symbol_dsc = &alt_icon,
-};
-
-LV_IMG_DECLARE(win_icon);
-struct modifier_symbol ms_win = {
-    .modifier = MOD_LGUI | MOD_RGUI,
-    .symbol_dsc = &win_icon,
-};
-
-struct modifier_symbol *modifier_symbols[] = {
-    // this order determines the order of the symbols
-    &ms_win,
-    &ms_alt,
+    &ms_opt,
     &ms_control,
     &ms_shift
 };
-#endif
 
 #define NUM_SYMBOLS (sizeof(modifier_symbols) / sizeof(struct modifier_symbol *))
 
@@ -105,7 +95,7 @@ static void move_object_y(void *obj, int32_t from, int32_t to) {
 
 static void set_modifiers(lv_obj_t *widget, struct modifiers_state state) {
     for (int i = 0; i < NUM_SYMBOLS; i++) {
-        bool mod_is_active = state.modifiers & modifier_symbols[i]->modifier;
+        bool mod_is_active = (state.modifiers & modifier_symbols[i]->modifier) > 0;
 
         if (mod_is_active && !modifier_symbols[i]->is_active) {
             move_object_y(modifier_symbols[i]->symbol, 1, 0);
