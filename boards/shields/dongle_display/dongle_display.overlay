@@ -1,0 +1,20 @@
+/*
+ * Copyright (c) 2024 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+&i2c1 {
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+    pinctrl-0 = <&pro_micro_i2c>;
+    pinctrl-names = "default";
+
+    sh1106: sh1106@3c {
+        compatible = "sinowealth,sh1106";
+        reg = <0x3c>;
+        segment-offset = <2>;
+    };
+};
+
+
