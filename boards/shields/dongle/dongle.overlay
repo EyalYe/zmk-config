@@ -8,7 +8,6 @@
 / {
     chosen {
         zmk,kscan = &mock_kscan;
-        zmk,matrix-transform = &default_transform;
         zephyr,display = &oled;
         zmk,physical-layout = &physical_layout0;
     };
