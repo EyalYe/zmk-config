@@ -1,14 +1,14 @@
 #include <layouts/foostan/corne.dtsi>
 
-&physical_layout0 {
+&foostan_corne_6col_layout {
     transform = <&default_transform>;
 };
-
 
 / {
     chosen {
         zmk,kscan = &mock_kscan;
-        zmk,physical-layout = &physical_layout0;
+        zmk,physical-layout = &foostan_corne_6col_layout;
+        zephyr,display = &oled;
     };
 
     mock_kscan: mock_kscan_0 {
