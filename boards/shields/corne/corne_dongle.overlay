@@ -1,4 +1,4 @@
-#include "corne.dtsi"
+#include <layouts/foostan/corne.dtsi>
 
 &physical_layout0 {
     transform = <&default_transform>;
