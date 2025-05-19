@@ -30,6 +30,13 @@
         rows = <0>;
         events = <0>;
     };
+
+    led_strip: led_strip {
+        compatible = "ws2812,strip";
+        chain-length = <27>; // Change to your number of LEDs
+        color-order = "GRB";
+        // Add pin and other properties as needed for your hardware
+    };
 };
 
 &pro_micro_i2c {
@@ -48,7 +55,7 @@
         inversion-on;
         prechargep = <0x22>;
         };
-}; 
+};
 
 
 
