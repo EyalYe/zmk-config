@@ -1,4 +1,4 @@
-#include <layouts/corne.dtsi>
+#include "corne.dtsi"
 
 &physical_layout0 {
     transform = <&default_transform>;
