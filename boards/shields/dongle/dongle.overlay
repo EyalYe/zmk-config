@@ -44,6 +44,7 @@
 
     physical_layout0: keymap_transform_0 {
         compatible = "zmk,physical-layout", "zmk,matrix-transform";
+        display-name = "Default Layout";
         columns = <12>;
         rows = <4>;
         map = <
