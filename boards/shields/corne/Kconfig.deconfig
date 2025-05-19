@@ -1,4 +1,4 @@
-if SHIELD_DONGLE
+if SHIELD_CORNE_DONGLE
 
 config ZMK_KEYBOARD_NAME
     default "TBK-MINI"
