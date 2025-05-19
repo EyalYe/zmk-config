@@ -10,6 +10,7 @@
         zmk,kscan = &mock_kscan;
         zmk,matrix-transform = &default_transform;
         zephyr,display = &oled;
+        zmk,physical-layout = &physical_layout0;
     };
 
     default_transform: keymap_transform_0 {
@@ -36,6 +37,14 @@
         chain-length = <27>; // Change to your number of LEDs
         color-order = "GRB";
         // Add pin and other properties as needed for your hardware
+    };
+};
+
+/ {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        transform = <&default_transform>;
     };
 };
 
