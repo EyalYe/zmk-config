@@ -33,6 +33,11 @@
             bindings = <&to 0>;
             key-positions = <24 25 26>;
         };
+
+        goto_onehand {
+            bindings = <&to 6>;
+            key-positions = <0 1 2>;
+        };
     };
 
     keymap {
@@ -121,10 +126,10 @@
 
         ONEHAND2 {
             bindings = <
-&kp TAB           &kp Y  &kp U  &kp I       &kp O  &kp P      &kp Q      &kp W  &kp E          &kp R    &kp T      &kp LEFT_ALT
-&kp LEFT_SHIFT    &kp J  &kp K          &kp L    &kp SEMI     &kp A  &kp S  &kp D       &kp F  &kp G      &kp H        &kp SQT
-&kp LEFT_CONTROL  &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp LEFT_GUI
-                               &kp SPACE  &trans  &kp BACKSPACE &kp ESCAPE  &trans  &kp RET    
+&kp TAB           &kp Y  &kp U  &kp I      &kp O     &kp P            &kp Q       &kp W   &kp E    &kp R  &kp T  &kp LEFT_ALT
+&kp LEFT_SHIFT    &kp J  &kp K  &kp L      &kp SEMI  &kp A            &kp S       &kp D   &kp F    &kp G  &kp H  &kp SQT
+&kp LEFT_CONTROL  &kp N  &kp M  &kp COMMA  &kp DOT   &kp FSLH         &kp Z       &kp X   &kp C    &kp V  &kp B  &kp LEFT_GUI
+                                &kp SPACE  &trans    &kp BACKSPACE    &kp ESCAPE  &trans  &kp RET
             >;
         };
     };
