@@ -1,10 +1,12 @@
-if SHIELD_CORNE_DONGLE
+if SHIELD_CORNE_DONGLE || SHIELD_CORNE_TRACKBALL
 
 config ZMK_KEYBOARD_NAME
     default "TBK-MINI"
 
+if SHIELD_CORNE_DONGLE
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
+endif
 
 config ZMK_SPLIT
     default y
