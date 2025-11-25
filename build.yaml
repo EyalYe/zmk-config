@@ -19,7 +19,7 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: coene_trackball
+    shield: corne_trackball
   - board: nice_nano_v2
     shield: corne_dongle dongle_display
   - board: nice_nano_v2
