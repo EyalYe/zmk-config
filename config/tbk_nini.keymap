@@ -26,12 +26,12 @@
 
         to_gaming {
             bindings = <&to 4>;
-            key-positions = <12 13 14>;
+            key-positions = <13 14 15>;
         };
 
         to_first {
             bindings = <&to 0>;
-            key-positions = <24 25 26>;
+            key-positions = <25 26 27>;
         };
 
         goto_onehand {
