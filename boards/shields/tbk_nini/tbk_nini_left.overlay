@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "corne_dongle.overlay"
+#include "tbk_nini.dtsi"
 
 &kscan0 {
     col-gpios

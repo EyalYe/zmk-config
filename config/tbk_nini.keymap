@@ -44,12 +44,7 @@
         compatible = "zmk,keymap";
 
         DEF {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
+          display-name = "DEF";
             bindings = <
 &kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT &mkp MB1 
 &kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
@@ -59,12 +54,7 @@
         };
 
         NUM {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
+          display-name = "NUM";
             bindings = <
 &kp TAB           &kp N1        &kp N2           &kp N3        &kp N4            &kp N5          &kp N6        &kp N7              &kp N8            &kp N9         &kp N0         &kp LEFT_ALT &mkp MB1 
 &kp LEFT_SHIFT    &bt BT_SEL 0  &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3      &bt BT_SEL 4    &kp LEFT      &kp DOWN            &kp UP            &kp RIGHT      &kp PAGE_UP    &kp LS(LG(S))
@@ -74,12 +64,7 @@
         };
 
         SYM {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
+          display-name = "SYM";
             bindings = <
 &kp TAB           &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK      &kp LPAR  &kp RPAR  &kp RIGHT_ALT &mkp MB1
 &kp LEFT_SHIFT    &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT       &kp RBKT  &kp BSLH  &kp GRAVE
@@ -89,6 +74,7 @@
         };
 
         SYS {
+          display-name = "SYS";
             bindings = <
 &kp F1  &kp F2      &kp F3          &mmv MOVE_UP    &kp F5           &kp F6    &kp F7  &kp F8    &kp F9    &kp F10   &kp F11  &kp F12 &mkp MB1
 &trans  &kp F4      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans    &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans   &trans
@@ -98,6 +84,7 @@
         };
 
         GAME {
+          display-name = "GAME";
             bindings = <
 &kp T  &kp TAB         &kp Q  &kp W         &kp E  &kp R        &kp Y    &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT &mkp MB1
 &kp G  &kp LEFT_SHIFT  &kp A  &kp S         &kp D  &kp F        &kp H    &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
@@ -107,6 +94,7 @@
         };
 
         GN {
+          display-name = "GN";
             bindings = <
 &kp TAB           &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans &mkp MB1 
 &trans            &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
@@ -116,6 +104,7 @@
         };
 
         ONEHAND {
+          display-name = "ONEHAND";
             bindings = <
 &kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT &mkp MB1
 &kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
@@ -125,6 +114,7 @@
         };
 
         ONEHAND2 {
+          display-name = "ONEHAND2";
             bindings = <
 &kp TAB         &kp Y  &kp U  &kp I          &kp O    &kp P            &kp Q       &kp W   &kp E    &kp R  &kp T  &kp LEFT_ALT &mkp MB1
 &kp LEFT_SHIFT  &kp H  &kp J  &kp K          &kp L    &kp SEMICOLON    &kp S       &kp D   &kp F    &kp G  &kp H  &kp SQT
