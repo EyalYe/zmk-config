@@ -59,6 +59,10 @@
     device = <&trackball>;
 };
 
+&trackball_listener {
+    status = "enabled";
+};
+
 &default_transform {
     col-offset = <12>;
 };
