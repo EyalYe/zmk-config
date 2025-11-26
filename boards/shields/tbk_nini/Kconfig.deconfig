@@ -1,5 +1,8 @@
 if SHIELD_TBK_NINI_DONGLE || SHIELD_TBK_NINI_TRACKBALL || SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
 
+config ZMK_POINTING
+    default y
+
 
 config ZMK_SPLIT
     default y
@@ -59,12 +62,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
     default y
 endif
 
-if SHIELD_TBK_NINI_TRACKBALL || SHIELD_TBK_NINI_DONGLE
 
-config ZMK_POINTING
-    default y
-
-endif
 
 if SHIELD_TBK_NINI_TRACKBALL
 
