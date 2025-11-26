@@ -55,8 +55,12 @@
     };
 };
 
-&trackball_split {
-    device = <&trackball>;
+/ {
+    trackball_listener {
+        status = "okay";
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+    };
 };
 
 &default_transform {
