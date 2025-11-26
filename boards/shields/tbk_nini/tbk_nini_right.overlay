@@ -6,9 +6,6 @@
 
 #include "tbk_nini.dtsi"
 
-&trackball_listener {
-    status = "okay";
-};
 
 &default_transform {
     col-offset = <6>;
