@@ -58,3 +58,17 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 endif
+
+if SHIELD_TBK_NINI_TRACKBALL || SHIELD_TBK_NINI_DONGLE
+
+config ZMK_POINTING
+    default y
+
+endif
+
+if SHIELD_TBK_NINI_TRACKBALL
+
+  config SPI
+    default y
+
+endif
