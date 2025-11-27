@@ -1,5 +1,6 @@
 
 #include "tbk_nini.dtsi"
+#include <input/processors.dtsi>
 
 &trackball_listener {
     status = "okay";
