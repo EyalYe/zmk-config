@@ -3,6 +3,11 @@
 
 &trackball_listener {
     status = "okay";
+
+    scroller {
+        layers = <1>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
+    };
 };
 
 &pro_micro_i2c {
