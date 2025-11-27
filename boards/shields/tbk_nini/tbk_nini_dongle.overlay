@@ -19,7 +19,7 @@
         status = "okay";
         device = <&trackball_split>;
         scroller {
-            layers = <1>;
+            layers = <2>;
             input-processors = <&zip_xy_to_scroll_mapper>;
         };
     };
