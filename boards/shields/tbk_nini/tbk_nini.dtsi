@@ -47,15 +47,14 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9)
 };
 
 &spi0 {
-    status = "disabled";
+    status = "okay";
 
-    moc_trackball: moc_trackball@0 {
-        status = "disabled";
+    trackball: trackball@0 {
+        status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
     };
 };
-
 
 / {
     split_inputs {
@@ -65,7 +64,7 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9)
         trackball_split: trackball@0 {
             compatible = "zmk,input-split";
             reg = <0>;
-            device = <&moc_trackball>;
+            device = <&trackball>;
         };
     };
 
