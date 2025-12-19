@@ -1,4 +1,4 @@
-if SHIELD_TBK_NINI_DONGLE || SHIELD_TBK_NINI_TRACKBALL || SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
+if SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
 
 config ZMK_POINTING
     default y
@@ -7,53 +7,21 @@ config ZMK_SPLIT
     default y
 
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-    default 3
+    default 2
 
 config ZMK_SPLIT_BLE
     default y
 
 config BT_MAX_CONN
-    default 8
+    default 7
 
 config BT_MAX_PAIRED
-    default 8
-
-
-if ZMK_DISPLAY
-
-config I2C
-    default y
-
-config SSD1306
-    default y
-
-choice ZMK_DISPLAY_WORK_QUEUE
-    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
-endchoice
-
-endif
-
-if LVGL
-
-config LV_Z_VDB_SIZE
-    default 64
-
-config LV_DPI_DEF
-    default 148
-
-config LV_Z_BITS_PER_PIXEL
-    default 1
-
-choice LV_COLOR_DEPTH
-    default LV_COLOR_DEPTH_1
-endchoice
-
-endif
+    default 7
 
 endif
 
 
-if SHIELD_TBK_NINI_DONGLE
+if SHIELD_TBK_NINI_LEFT
 config ZMK_KEYBOARD_NAME
     default "TBK-NINI"
 
@@ -61,9 +29,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
     default y
 endif
 
-
-
-if SHIELD_TBK_NINI_TRACKBALL || SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
+if SHIELD_TBK_NINI_RIGHT
 
   config SPI
     default y

@@ -19,17 +19,9 @@
 ---
 include:
 #  - board: nice_nano_v2
-#    shield: tbk_nini_trackball
-#    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-#    snippet: zmk-usb-logging
-  - board: nice_nano_v2
-    shield: tbk_nini_dongle dongle_display
-#    snippet: zmk-usb-logging
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: settings_reset
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: tbk_nini_left
-    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: tbk_nini_right
-    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
