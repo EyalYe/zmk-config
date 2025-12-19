@@ -46,100 +46,100 @@
         DEF {
             display-name = "DEF";
             bindings = <
-&kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
-&kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
-&kp LEFT_CONTROL  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp LEFT_GUI
-                                &kp ESCAPE  &mo 1  &kp RET    &kp SPACE  &mo 2  &kp BACKSPACE
+                &kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
+                &kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
+                &kp LEFT_CONTROL  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp LEFT_GUI
+                                                &kp ESCAPE  &mo 1  &kp RET    &kp SPACE  &mo 2  &kp BACKSPACE
             >;
         };
 
         NUM {
             display-name = "NUM";
             bindings = <
-&kp TAB           &kp N1        &kp N2           &kp N3      &kp N4            &kp N5        &kp N6        &kp N7              &kp N8            &kp N9         &kp N0         &kp LEFT_ALT   
-&kp LEFT_SHIFT    &mo 8         &mkp MB2         &mkp MB3    &mkp MB1          &mo 9         &kp LEFT      &kp DOWN            &kp UP            &kp RIGHT      &kp PAGE_UP    &kp LS(LG(S))
-&kp LEFT_CONTROL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp C_PREV  &kp C_PLAY_PAUSE  &kp C_NEXT    &kp LC(LEFT)  &kp LC(DOWN_ARROW)  &kp LC(UP_ARROW)  &kp LC(RIGHT)  &kp PAGE_DOWN  &kp LG(SPACE)
-                                                 &kp DEL     &trans            &kp SPACE     &kp LEFT_GUI  &mo 3               &kp BACKSPACE
+              &kp TAB           &kp N1        &kp N2           &kp N3      &kp N4            &kp N5        &kp N6        &kp N7              &kp N8            &kp N9         &kp N0         &kp LEFT_ALT   
+              &kp LEFT_SHIFT    &mo 8         &mkp MB2         &mkp MB3    &mkp MB1          &mo 9         &kp LEFT      &kp DOWN            &kp UP            &kp RIGHT      &kp PAGE_UP    &kp LS(LG(S))
+              &kp LEFT_CONTROL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp C_PREV  &kp C_PLAY_PAUSE  &kp C_NEXT    &kp LC(LEFT)  &kp LC(DOWN_ARROW)  &kp LC(UP_ARROW)  &kp LC(RIGHT)  &kp PAGE_DOWN  &kp LG(SPACE)
+                                                              &kp DEL     &trans            &kp SPACE     &kp LEFT_GUI  &mo 3               &kp BACKSPACE
             >;
         };
 
         SYM {
             display-name = "SYM";
             bindings = <
-&kp TAB           &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK      &kp LPAR  &kp RPAR  &kp RIGHT_ALT  
-&kp LEFT_SHIFT    &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT       &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LEFT_CONTROL  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC       &kp RBRC  &kp PIPE  &kp TILDE
-                                    &kp LGUI  &mo 3     &kp SPACE    &kp RET    &trans     &kp BACKSPACE
+              &kp TAB           &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK      &kp LPAR  &kp RPAR  &kp RIGHT_ALT  
+              &kp LEFT_SHIFT    &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT       &kp RBKT  &kp BSLH  &kp GRAVE
+              &kp LEFT_CONTROL  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC       &kp RBRC  &kp PIPE  &kp TILDE
+                                                  &kp LGUI  &mo 3     &kp SPACE    &kp RET    &trans     &kp BACKSPACE
             >;
         };
 
         SYS {
             display-name = "SYS";
             bindings = <
-&kp F1  &kp F2      &kp F3          &mmv MOVE_UP    &kp F5           &kp F6    &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12         
-&trans  &kp F4      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans    &trans        &mkp MB1      &mkp MB3      &mkp MB2      &trans        &trans
-&trans  &kp LA(F4)  &trans          &trans          &trans           &trans    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR_ALL
-                                    &trans          &trans           &trans    &trans        &trans        &trans
+              &kp F1  &kp F2      &kp F3          &mmv MOVE_UP    &kp F5           &kp F6    &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12         
+              &trans  &kp F4      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans    &trans        &mkp MB1      &mkp MB3      &mkp MB2      &trans        &trans
+              &trans  &kp LA(F4)  &trans          &trans          &trans           &trans    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR_ALL
+                                                  &trans          &trans           &trans    &trans        &trans        &trans
             >;
         };
 
         GAME {
             display-name = "GAME";
             bindings = <
-&kp T  &kp TAB         &kp Q  &kp W         &kp E  &kp R        &kp Y    &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
-&kp G  &kp LEFT_SHIFT  &kp A  &kp S         &kp D  &kp F        &kp H    &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
-&kp B  &kp LCTRL       &kp Z  &kp X         &kp C  &kp V        &kp N    &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp ESCAPE
-                              &kp CAPSLOCK  &mo 5  &kp SPACE    &kp RET  &mo 2  &kp BACKSPACE
+              &kp T  &kp TAB         &kp Q  &kp W         &kp E  &kp R        &kp Y    &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
+              &kp G  &kp LEFT_SHIFT  &kp A  &kp S         &kp D  &kp F        &kp H    &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
+              &kp B  &kp LCTRL       &kp Z  &kp X         &kp C  &kp V        &kp N    &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp ESCAPE
+                                            &kp CAPSLOCK  &mo 5  &kp SPACE    &kp RET  &mo 2  &kp BACKSPACE
             >;
         };
 
         GN {
             display-name = "GN";
             bindings = <
-&kp TAB           &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
-&trans            &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LEFT_CONTROL  &kp N7        &kp N8        &kp N9        &kp N0  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                              &trans        &trans  &trans    &trans  &trans  &trans
-            >;
+              &kp TAB           &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
+              &trans            &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+              &kp LEFT_CONTROL  &kp N7        &kp N8        &kp N9        &kp N0  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                                            &trans        &trans  &trans    &trans  &trans  &trans
+              >;
         };
 
         ONEHAND {
             display-name = "ONEHAND";
             bindings = <
-&kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
-&kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
-&kp LEFT_CONTROL  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp LEFT_GUI
-                                &kp ESCAPE  &mo 7  &kp RET    &kp SPACE  &mo 2  &kp BACKSPACE
+              &kp TAB           &kp Q  &kp W  &kp E       &kp R  &kp T      &kp Y      &kp U  &kp I          &kp O    &kp P     &kp LEFT_ALT  
+              &kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
+              &kp LEFT_CONTROL  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp LEFT_GUI
+                                              &kp ESCAPE  &mo 7  &kp RET    &kp SPACE  &mo 2  &kp BACKSPACE
             >;
         };
 
         ONEHAND2 {
             display-name = "ONEHAND2";
             bindings = <
-&kp TAB         &kp Y  &kp U  &kp I          &kp O    &kp P            &kp Q       &kp W   &kp E    &kp R  &kp T  &kp LEFT_ALT  
-&kp LEFT_SHIFT  &kp H  &kp J  &kp K          &kp L    &kp SEMICOLON    &kp S       &kp D   &kp F    &kp G  &kp H  &kp SQT
-&mo 5           &kp N  &kp M  &kp COMMA      &kp DOT  &kp FSLH         &kp Z       &kp X   &kp C    &kp V  &kp B  &kp LEFT_GUI
-                              &kp BACKSPACE  &trans   &kp SPACE        &kp ESCAPE  &trans  &kp RET
+            &kp TAB         &kp Y  &kp U  &kp I          &kp O    &kp P            &kp Q       &kp W   &kp E    &kp R  &kp T  &kp LEFT_ALT  
+            &kp LEFT_SHIFT  &kp H  &kp J  &kp K          &kp L    &kp SEMICOLON    &kp S       &kp D   &kp F    &kp G  &kp H  &kp SQT
+            &mo 5           &kp N  &kp M  &kp COMMA      &kp DOT  &kp FSLH         &kp Z       &kp X   &kp C    &kp V  &kp B  &kp LEFT_GUI
+                                          &kp BACKSPACE  &trans   &kp SPACE        &kp ESCAPE  &trans  &kp RET
             >;
         };
 
         SCRL {
             display-name = "SCRL";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                    &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
 
         SNYP {
             display-name = "SNYP";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+            &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                    &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };

@@ -35,7 +35,7 @@
             , <&pro_micro 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            // , <&pro_micro 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // in case you want to add the extra row (you'll have to change the matrix_transform as well)
             ;
         col-gpios
             = <&pro_micro 18 GPIO_ACTIVE_HIGH>
