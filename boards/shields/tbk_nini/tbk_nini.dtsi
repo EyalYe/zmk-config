@@ -17,7 +17,7 @@
 
 / {
   chosen {
-    zmk,physical-layout = &tbk_nini_6col_layout;
+    zmk,physical-layout = &tbk_nini_6col_tb_layout;
     kscan = <&kscan0>;
   };
 
@@ -33,7 +33,7 @@
     >;
   };
 
-  default_transform:  keymap_transform_0 {
+  default_transform:  keymap_transform_1 {
     compatible = "zmk,matrix-transform";
     columns = <12>;
     rows = <4>;
@@ -55,7 +55,7 @@
       , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
       , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
       , <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-      , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      // , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
       ;
     col-gpios
       = <&pro_micro 19 GPIO_ACTIVE_HIGH>
@@ -67,5 +67,20 @@
       ;
   };
 
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+    };
 };
 
