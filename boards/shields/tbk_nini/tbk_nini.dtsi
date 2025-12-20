@@ -33,7 +33,7 @@
     >;
   };
 
-  default_transform:  keymap_transform_1 {
+  tb_transform:  keymap_transform_1 {
     compatible = "zmk,matrix-transform";
     columns = <12>;
     rows = <4>;
