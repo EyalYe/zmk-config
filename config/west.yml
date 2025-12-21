@@ -12,7 +12,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-dongle-display
-      remote: eyalye
+      url: https://github.com/eyalye/zmk-dongle-display
       revision: main
     - name: zmk-paw3395-driver
       remote: badjeff
