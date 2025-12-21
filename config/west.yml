@@ -14,7 +14,7 @@ manifest:
     - name: zmk-dongle-display
       remote: englmaxi
       revision: main
-    - name: zmk-pmw3610-driver
+    - name: zmk-paw3395-driver
       remote: badjeff
       revision: main
   self:
