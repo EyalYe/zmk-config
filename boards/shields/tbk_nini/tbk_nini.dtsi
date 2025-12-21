@@ -17,9 +17,9 @@
 
 / {
   chosen {
-    // zmk,physical-layout = &tbk_nini_6col_tb_layout;
-    kscan = <&kscan0>;
-    zmk,matrix_transform = &tb_transform_mat;
+    zmk,physical-layout = &tbk_nini_6col_tb_layout;
+    zmk,kscan = <&kscan0>;
+    //zmk,matrix_transform = &tb_transform_mat;
   };
 
   default_transform:  keymap_transform_0 {
@@ -58,7 +58,7 @@
     >;
   };
 
-  kscan0: kscan {
+  kscan0: kscan0 {
     compatible = "zmk,kscan-gpio-matrix";
     wakeup-source;
 
