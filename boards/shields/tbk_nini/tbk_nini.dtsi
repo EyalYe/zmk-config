@@ -18,7 +18,7 @@
 / {
   chosen {
     zmk,physical-layout = &tbk_nini_6col_tb_layout;
-    zmk,kscan = <&kscan0>;
+    zmk,kscan = &kscan0;
     //zmk,matrix_transform = &tb_transform_mat;
   };
 
