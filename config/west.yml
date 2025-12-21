@@ -3,7 +3,7 @@ manifest:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
     - name: englmaxi
-      url-base: https://github.com/englmaxi
+      url-base: https://github.com/eyalye
     - name: badjeff
       url-base: https://github.com/badjeff
   projects:
@@ -12,7 +12,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-dongle-display
-      remote: englmaxi
+      remote: eyalye
       revision: main
     - name: zmk-paw3395-driver
       remote: badjeff
