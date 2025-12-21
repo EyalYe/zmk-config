@@ -2,7 +2,7 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: englmaxi
+    - name: eyalye
       url-base: https://github.com/eyalye
     - name: badjeff
       url-base: https://github.com/badjeff
