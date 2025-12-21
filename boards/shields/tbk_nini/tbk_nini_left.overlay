@@ -19,6 +19,9 @@
 
 &trackball_listener{
   status = "okay";
+};
+
+&trackball_split {
   // Input processors
   input-processors = <&zip_xy_scaler 3 2>;
   input-processors = <&zip_scroll_scaler 1 12>;
