@@ -77,7 +77,7 @@
       status = "disabled";
       device = <&trackball_split>;
       // Input processors
-      input-processors = <&zip_xy_scaler 3 2>;
+      input-processors = <&zip_xy_scaler 5 2>;
       input-processors = <&zip_scroll_scaler 1 12>;
       scroller {
         layers = <8>;
