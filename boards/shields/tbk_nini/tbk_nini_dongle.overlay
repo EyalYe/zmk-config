@@ -18,7 +18,7 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackball_split>;
-        input-processors = <&zip_xy_scaler 3 1>;
+        input-processors = <&zip_xy_scaler 4 1>;
         input-processors = <&zip_scroll_scaler 1 12>;
         scroller {
             layers = <8>;
