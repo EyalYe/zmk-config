@@ -25,25 +25,6 @@
         ;
 };
 
-/ {
-    split_inputs {
-    #address-cells = <1>;
-    #size-cells = <0>;
-
-    trackpad_split: trackpad_split@0 {
-      compatible = "zmk,input-split";
-      reg = <0>;
-      device = <&tps43>;
-    };
-  };
-
-    trackpad_listener: trackpad_listener {
-      compatible = "zmk,input-listener";
-      status = "disabled";
-      device = <&trackpad_split>;
-    };
-};
-
 
 &pro_micro_i2c {
   status = "okay";
@@ -72,5 +53,18 @@
     stationary-threshold = <5>;
 
     switch-xy;
+  };
+};
+
+/ {
+    split_inputs {
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    trackpad_split: trackpad_split@0 {
+      compatible = "zmk,input-split";
+      reg = <0>;
+      device = <&tps43>;
+    };
   };
 };
