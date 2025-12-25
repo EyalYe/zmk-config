@@ -31,6 +31,6 @@
   trackpad_listener: trackpad_listener {
     compatible = "zmk,input-listener";
     status = "okay";
-    device = <&tracpad_split>;
+    device = <&trackpad_split>;
   };
 };
