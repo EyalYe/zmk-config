@@ -10,9 +10,6 @@ endif
 
 if SHIELD_CORNE_TP_LEFT || SHIELD_CORNE_TP_RIGHT
 
-config ZMK_INPUT
-    default y
-
 config ZMK_POINTING
     default y
 
