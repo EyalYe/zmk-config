@@ -32,5 +32,4 @@
     compatible = "zmk,input-listener";
     status = "okay";
     device = <&trackpad_split>;
-  };
 };
