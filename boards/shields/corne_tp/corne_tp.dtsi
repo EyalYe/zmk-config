@@ -6,6 +6,9 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
+
 #include <layouts/foostan/corne/5column.dtsi>
 #include <layouts/foostan/corne/6column.dtsi>
 
