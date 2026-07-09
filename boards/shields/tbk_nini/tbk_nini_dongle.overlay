@@ -38,12 +38,6 @@
 };
 
 &kscan0 {
-    compatible = "zmk,kscan-mock";
-    columns = <0>;
-    rows = <0>;
-    events = <0>;
-
-    /delete-property/ row-gpios;
-    /delete-property/ col-gpios;
-    /delete-property/ diode-direction;
+    row-gpios;
+    col-gpios;
 };
