@@ -38,18 +38,12 @@
 };
 
 &kscan0 {
-    row-gpios
-        = <&gpio1 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D8  = P1.04
-        , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D5  = P0.24
-        , <&gpio1 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D6  = P1.00
-        , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D7  = P0.11
-        ;
-    col-gpios
-        = <&gpio0 31 GPIO_ACTIVE_HIGH>   // D21 = P0.31
-        , <&gpio0 29 GPIO_ACTIVE_HIGH>   // D20 = P0.29
-        , <&gpio0 2  GPIO_ACTIVE_HIGH>   // D19 = P0.02
-        , <&gpio1 15 GPIO_ACTIVE_HIGH>   // D18 = P1.15
-        , <&gpio1 13 GPIO_ACTIVE_HIGH>   // D15 = P1.13
-        , <&gpio1 11 GPIO_ACTIVE_HIGH>   // D14 = P1.11
-        ;
+    compatible = "zmk,kscan-mock";
+    columns = <0>;
+    rows = <0>;
+    events = <0>;
+
+    /delete-property/ row-gpios;
+    /delete-property/ col-gpios;
+    /delete-property/ diode-direction;
 };
