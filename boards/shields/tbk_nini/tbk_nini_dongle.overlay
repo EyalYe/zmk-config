@@ -1,6 +1,6 @@
 
+#include "tbk_nini.dtsi"
 #include <input/processors.dtsi>
-#include <dt-bindings/zmk/matrix_transform.h>
 
 
 / {
@@ -35,15 +35,9 @@
           input-processors = <&zip_xy_scaler 1 3>;
         };
         };
+};
 
-    chosen {
-        zmk,kscan = &mock_kscan;
-    };
-
-    mock_kscan: mock_kscan_0 {
-        compatible = "zmk,kscan-mock";
-        columns = <0>;
-        rows = <0>;
-        events = <0>;
-    };
+&kscan0 {
+    row-gpios = ;
+    col-gpios = ;
 };
