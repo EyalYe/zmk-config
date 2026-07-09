@@ -6,14 +6,16 @@ manifest:
       url-base: https://github.com/englmaxi
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: carrefinho
+      url-base: https://github.com/carrefinho
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-dongle-display
-      remote: englmaxi
-      revision: main
+    - name: prospector-zmk-module
+      remote: carrefinho
+      revision: feat/new-status-screens
     - name: zmk-paw3395-driver
       remote: badjeff
       revision: main
