@@ -55,7 +55,8 @@ To confirm what actually loaded, read the CI build log for lines:
 double VDB, flush thread, `LV_DPI_DEF=261`, `ST7789V_RGB565`, PWM/LED for
 backlight). So you do **not** need a `dongle_display.conf` to turn the display on.
 
-User-facing prospector options (set in a loaded `.conf`, e.g. `config/tbk_nini.conf`):
+User-facing prospector options (set them in the dongle-only shield conf
+`boards/shields/tbk_nini/tbk_nini_dongle.conf` so they don't warn on the halves):
 - `CONFIG_PROSPECTOR_STATUS_SCREEN_{OPERATOR,FIELD,RADII}=y` (Classic is default)
 - `CONFIG_PROSPECTOR_USE_AMBIENT_LIGHT_SENSOR=y|n` (default y; selects APDS9960)
 - `CONFIG_PROSPECTOR_FIXED_BRIGHTNESS=1..100` (default 50)

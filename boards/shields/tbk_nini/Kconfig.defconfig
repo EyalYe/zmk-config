@@ -1,4 +1,4 @@
-if SHIELD_TBK_NINI_DONGLE  || SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
+if SHIELD_TBK_NINI_DONGLE || SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
 
 config ZMK_POINTING
     default y
@@ -6,11 +6,11 @@ config ZMK_POINTING
 config ZMK_SPLIT
     default y
 
-config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-    default 3
-
 config ZMK_SPLIT_BLE
     default y
+
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 3
 
 config BT_MAX_CONN
     default 8
@@ -18,31 +18,23 @@ config BT_MAX_CONN
 config BT_MAX_PAIRED
     default 8
 
-# NOTE: Display/LVGL defaults are intentionally NOT set here.
-# The dongle's display is driven entirely by the prospector_adapter
-# shield (color ST7789V), whose Kconfig.defconfig provides the correct
-# LVGL settings (COLOR_DEPTH_16, BITS_PER_PIXEL=16, VDB, DPI, etc.).
-# Setting SSD1306 / LV_COLOR_DEPTH_1 / 1-bpp here would clobber that and
-# break the color screen. The keyboard halves have no display wired.
-# If you ever add an OLED to a half, re-add those defaults guarded by
-# `if SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT` only.
+# Display/LVGL defaults are intentionally NOT set here: the dongle's color
+# ST7789V screen is fully configured by the prospector_adapter shield. Adding
+# SSD1306 / 1-bpp / mono LVGL defaults would clobber it and break the screen.
+# If a half ever gets an OLED, add those guarded by LEFT || RIGHT only.
 
 endif
 
-
 if SHIELD_TBK_NINI_DONGLE
-config ZMK_KEYBOARD_NAME
-    default "TBK-NINI"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
+
 endif
 
+if SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
 
-
-if  SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
-
-  config SPI
+config SPI
     default y
 
 endif
