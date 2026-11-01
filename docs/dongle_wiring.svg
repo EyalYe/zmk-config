@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
+<style>
+  .bg { fill: #1e1f29; }
+  .half { fill: #262837; stroke: #3a3d52; stroke-width: 1.5; }
+  .key { fill: #343746; stroke: #4b4f66; stroke-width: 1; }
+  .lbl { fill: #f2f2f7; font: 600 13px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; text-anchor: middle; dominant-baseline: central; }
+  .small { font-size: 10.5px; }
+  .title { fill: #f2f2f7; font: 700 20px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
+  .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
+  .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
+  .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
+  .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
+  .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
+  .kind-macro { fill: #4d3d1d; stroke: #f5b84c; }
+  .kind-trans { fill: #2a2c3a; stroke: #3a3d52; stroke-dasharray: 3 3; }
+  .sensor { fill: #15161e; stroke: #3cc9b4; stroke-width: 2; }
+  .sensor-dot { fill: #3cc9b4; }
+  .wire { fill: none; stroke-width: 2.2; }
+  .pin { fill: #f2f2f7; font: 500 11.5px 'JetBrains Mono','Fira Code',Menlo,monospace; dominant-baseline: central; }
+  .pinbox { fill: #343746; stroke: #4b4f66; }
+  .board { fill: #17351f; stroke: #3ccf6e; stroke-width: 2; }
+</style>
+<rect class="bg" width="100%" height="100%" rx="18"/><text class="title" x="30" y="44">Dongle wiring: nice!nano v2</text>
+<text class="sub" x="30" y="66">PAW3395 on high-frequency pins only · buttons to GND (internal pull-ups)</text>
+<rect class="board" x="340" y="100" width="220" height="330" rx="12"/><text class="lbl" x="450.0" y="122">nice!nano v2</text><rect x="428.0" y="92" width="44" height="16" rx="3" fill="#9a9cb3"/>
+<rect class="half" x="40" y="110" width="170" height="290" rx="12"/><text class="lbl" x="125" y="132">PAW3395</text><text class="sub" x="125" y="150" text-anchor="middle">+ VCC 3.3V, GND</text>
+<rect class="pinbox" x="130" y="167" width="70" height="26" rx="5"/><text class="pin" x="140" y="180">SCLK</text>
+<path class="wire" stroke="#3cc9b4" d="M200,180 C280,180 260,160 340,160"/><text class="pin" x="350" y="160">D18</text><text class="pin" x="392" y="160" fill="#9a9cb3">P1.15</text>
+<rect class="pinbox" x="130" y="211" width="70" height="26" rx="5"/><text class="pin" x="140" y="224">MOSI</text>
+<path class="wire" stroke="#4c9cf5" d="M200,224 C280,224 260,200 340,200"/><text class="pin" x="350" y="200">D19</text><text class="pin" x="392" y="200" fill="#9a9cb3">P0.02</text>
+<rect class="pinbox" x="130" y="255" width="70" height="26" rx="5"/><text class="pin" x="140" y="268">MISO</text>
+<path class="wire" stroke="#8b7cf6" d="M200,268 C280,268 260,240 340,240"/><text class="pin" x="350" y="240">D20</text><text class="pin" x="392" y="240" fill="#9a9cb3">P0.29</text>
+<rect class="pinbox" x="130" y="299" width="70" height="26" rx="5"/><text class="pin" x="140" y="312">NCS</text>
+<path class="wire" stroke="#f5b84c" d="M200,312 C280,312 260,280 340,280"/><text class="pin" x="350" y="280">D21</text><text class="pin" x="392" y="280" fill="#9a9cb3">P0.31</text>
+<rect class="pinbox" x="130" y="343" width="70" height="26" rx="5"/><text class="pin" x="140" y="356">MOTION</text>
+<path class="wire" stroke="#f5576c" d="M200,356 C280,356 260,320 340,320"/><text class="pin" x="350" y="320">D15</text><text class="pin" x="392" y="320" fill="#9a9cb3">P1.13</text>
+<text class="pin" x="550" y="160" text-anchor="end">D4</text><text class="pin" x="512" y="160" text-anchor="end" fill="#9a9cb3">P0.22</text><path class="wire" stroke="#9a9cb3" d="M560,160 L670,160"/><rect class="key kind-mouse" x="670" y="146" width="28" height="28" rx="6"/><text class="pin" x="708" y="160">BTN1 · L Click</text>
+<text class="pin" x="550" y="200" text-anchor="end">D5</text><text class="pin" x="512" y="200" text-anchor="end" fill="#9a9cb3">P0.24</text><path class="wire" stroke="#9a9cb3" d="M560,200 L670,200"/><rect class="key kind-mouse" x="670" y="186" width="28" height="28" rx="6"/><text class="pin" x="708" y="200">BTN2 · M Click</text>
+<text class="pin" x="550" y="240" text-anchor="end">D6</text><text class="pin" x="512" y="240" text-anchor="end" fill="#9a9cb3">P1.00</text><path class="wire" stroke="#9a9cb3" d="M560,240 L670,240"/><rect class="key kind-mouse" x="670" y="226" width="28" height="28" rx="6"/><text class="pin" x="708" y="240">BTN3 · R Click</text>
+<text class="pin" x="550" y="280" text-anchor="end">D8</text><text class="pin" x="512" y="280" text-anchor="end" fill="#9a9cb3">P1.04</text><path class="wire" stroke="#9a9cb3" d="M560,280 L670,280"/><rect class="key kind-mouse" x="670" y="266" width="28" height="28" rx="6"/><text class="pin" x="708" y="280">BTN4 · Back</text>
+<text class="pin" x="550" y="320" text-anchor="end">D9</text><text class="pin" x="512" y="320" text-anchor="end" fill="#9a9cb3">P1.06</text><path class="wire" stroke="#9a9cb3" d="M560,320 L670,320"/><rect class="key kind-mouse" x="670" y="306" width="28" height="28" rx="6"/><text class="pin" x="708" y="320">BTN5 · Fwd</text>
+<text class="sub" x="670" y="370">other leg of each button → GND</text></svg>
