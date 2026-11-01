@@ -3,18 +3,18 @@
  * with a PAW3395 optical sensor and 5 direct-wired buttons.
  *
  * Wiring (pro_micro pin -> nRF pin):
- *   PAW3395 (high-frequency pins only)
- *     SCLK   D18 -> P1.15
- *     MOSI   D19 -> P0.02
- *     MISO   D20 -> P0.29
- *     NCS    D21 -> P0.31
- *     MOTION D15 -> P1.13
- *   Buttons (to GND, internal pull-up)
- *     BTN1 D4 -> P0.22
- *     BTN2 D5 -> P0.24
- *     BTN3 D6 -> P1.00
- *     BTN4 D8 -> P1.04 (low-frequency pin, fine for a button)
- *     BTN5 D9 -> P1.06 (low-frequency pin, fine for a button)
+ *   PAW3395 (high-frequency pins)
+ *     SCLK   D1  -> P0.06
+ *     MOSI   D0  -> P0.08
+ *     MISO   D2  -> P0.17
+ *     NCS    D3  -> P0.20
+ *     MOTION D4  -> P0.22
+ *   Buttons (to GND, internal pull-up; low-frequency pins are fine here)
+ *     BTN1 D8  -> P1.04
+ *     BTN2 D9  -> P1.06
+ *     BTN3 D10 -> P0.09 (NFC pin, enabled as GPIO below)
+ *     BTN4 D16 -> P0.10 (NFC pin, enabled as GPIO below)
+ *     BTN5 D14 -> P1.11
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
@@ -48,11 +48,11 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9)
         compatible = "zmk,kscan-gpio-direct";
         wakeup-source;
         input-gpios
-            = <&pro_micro 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&pro_micro 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&pro_micro 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&pro_micro 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&pro_micro 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            = <&gpio1 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio1 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
     };
 
@@ -74,20 +74,25 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9)
     };
 };
 
+// P0.09 / P0.10 default to NFC antenna pins; use them as plain GPIOs
+&uicr {
+    nfct-pins-as-gpios;
+};
+
 &pinctrl {
     spi2_default: spi2_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
-                    <NRF_PSEL(SPIM_MOSI, 0, 2)>,
-                    <NRF_PSEL(SPIM_MISO, 0, 29)>;
+            psels = <NRF_PSEL(SPIM_SCK, 0, 6)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 8)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 17)>;
         };
     };
 
     spi2_sleep: spi2_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
-                    <NRF_PSEL(SPIM_MOSI, 0, 2)>,
-                    <NRF_PSEL(SPIM_MISO, 0, 29)>;
+            psels = <NRF_PSEL(SPIM_SCK, 0, 6)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 8)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 17)>;
             low-power-enable;
         };
     };
@@ -99,14 +104,14 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9)
     pinctrl-0 = <&spi2_default>;
     pinctrl-1 = <&spi2_sleep>;
     pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
 
     paw3395: paw3395@0 {
         compatible = "pixart,paw3395";
         status = "okay";
         reg = <0>;
         spi-max-frequency = <4000000>;
-        irq-gpios = <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        irq-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         cpi = <800>;
         // swap-xy;
         // invert-x;

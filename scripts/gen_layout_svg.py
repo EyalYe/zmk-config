@@ -213,23 +213,23 @@ total_h = LAYER_H * len(layers) + 70
 
 # ---------- wiring diagram ----------
 WIRES = [
-    # (pro_micro pin, label, nrf, device pin, color, side)
-    ("D18", "P1.15", "SCLK", "#3cc9b4"),
-    ("D19", "P0.02", "MOSI", "#4c9cf5"),
-    ("D20", "P0.29", "MISO", "#8b7cf6"),
-    ("D21", "P0.31", "NCS", "#f5b84c"),
-    ("D15", "P1.13", "MOTION", "#f5576c"),
+    # (pro_micro pin, nrf pin, device pin, color)
+    ("D1", "P0.06", "SCLK", "#3cc9b4"),
+    ("D0", "P0.08", "MOSI", "#4c9cf5"),
+    ("D2", "P0.17", "MISO", "#8b7cf6"),
+    ("D3", "P0.20", "NCS", "#f5b84c"),
+    ("D4", "P0.22", "MOTION", "#f5576c"),
 ]
 BUTTONS = [
-    ("D4", "P0.22", "BTN1 · L Click"),
-    ("D5", "P0.24", "BTN2 · M Click"),
-    ("D6", "P1.00", "BTN3 · R Click"),
-    ("D8", "P1.04", "BTN4 · Back"),
-    ("D9", "P1.06", "BTN5 · Fwd"),
+    ("D8", "P1.04", "BTN1 · L Click"),
+    ("D9", "P1.06", "BTN2 · M Click"),
+    ("D10", "P0.09", "BTN3 · R Click"),
+    ("D16", "P0.10", "BTN4 · Back"),
+    ("D14", "P1.11", "BTN5 · Fwd"),
 ]
 ww, wh = 900, 470
 p = ['<text class="title" x="30" y="44">Dongle wiring: nice!nano v2</text>',
-     '<text class="sub" x="30" y="66">PAW3395 on high-frequency pins only · buttons to GND (internal pull-ups)</text>']
+     '<text class="sub" x="30" y="66">PAW3395 on high-frequency pins · buttons on low-frequency pins, to GND (internal pull-ups)</text>']
 bx, by, bw, bh = 340, 100, 220, 330
 p.append(f'<rect class="board" x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="12"/>'
          f'<text class="lbl" x="{bx + bw / 2}" y="{by + 22}">nice!nano v2</text>'

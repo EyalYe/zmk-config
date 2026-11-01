@@ -67,24 +67,28 @@ with the halves' keys.
 
 ![Dongle wiring](docs/dongle_wiring.svg)
 
-The PAW3395 uses **only high-frequency-capable pins**. The nRF52840 datasheet marks
-some GPIOs "low frequency I/O only" (≤10 kHz). On the nice!nano header those are
-**D8 (P1.04), D9 (P1.06), D10 (P0.09, NFC) and D16 (P0.10, NFC)**. Fast SPI signals
-must stay off them. Buttons are slow, so they use two of those pins.
+The PAW3395 uses **only high-frequency pins**. The nRF52840 datasheet marks
+some GPIOs "low frequency I/O only" (≤10 kHz): P0.09/P0.10 (the NFC pins) and the
+P1.xx pins near the radio. Those are fine for buttons but not for the sensor's SPI bus,
+so the 5 buttons get the low-frequency pins.
 
-| Signal         | Pro Micro pin | nRF52840 pin | Notes                         |
-| -------------- | ------------- | ------------ | ----------------------------- |
-| PAW3395 SCLK   | D18           | P1.15        | SPIM2 SCK                     |
-| PAW3395 MOSI   | D19           | P0.02        | SPIM2 MOSI                    |
-| PAW3395 MISO   | D20           | P0.29        | SPIM2 MISO                    |
-| PAW3395 NCS    | D21           | P0.31        | chip select, active low       |
-| PAW3395 MOTION | D15           | P1.13        | interrupt, active low, pull-up|
-| PAW3395 VCC/GND| VCC / GND     |              | check your breakout's voltage |
-| BTN1           | D4            | P0.22        | → GND, internal pull-up       |
-| BTN2           | D5            | P0.24        | → GND                         |
-| BTN3           | D6            | P1.00        | → GND                         |
-| BTN4           | D8            | P1.04        | → GND (low-freq pin, fine)    |
-| BTN5           | D9            | P1.06        | → GND (low-freq pin, fine)    |
+| Signal          | Pro Micro pin | nRF52840 pin | Notes                               |
+| --------------- | ------------- | ------------ | ----------------------------------- |
+| PAW3395 SCLK    | D1            | P0.06        | SPIM2 SCK                           |
+| PAW3395 MOSI    | D0            | P0.08        | SPIM2 MOSI                          |
+| PAW3395 MISO    | D2            | P0.17        | SPIM2 MISO                          |
+| PAW3395 NCS     | D3            | P0.20        | chip select, active low             |
+| PAW3395 MOTION  | D4            | P0.22        | interrupt, active low, pull-up      |
+| PAW3395 VCC/GND | VCC / GND     |              | check your breakout's voltage       |
+| BTN1            | D8            | P1.04        | → GND, internal pull-up             |
+| BTN2            | D9            | P1.06        | → GND                               |
+| BTN3            | D10           | P0.09        | → GND (NFC pin, enabled as GPIO)    |
+| BTN4            | D16           | P0.10        | → GND (NFC pin, enabled as GPIO)    |
+| BTN5            | D14           | P1.11        | → GND                               |
+
+P0.09/P0.10 default to the NFC antenna. The overlay turns them into GPIOs with
+`&uicr { nfct-pins-as-gpios; }`. P0.17/P0.20 are the nice!nano's default I2C pins, but
+I2C is disabled on the dongle, so they're free for SPI.
 
 The sensor runs on `spi2` at 4 MHz, at **800 CPI** by default. See [Customizing](#customizing).
 
@@ -185,7 +189,7 @@ Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
 | Sensor CPI               | `cpi = <800>;` in `boards/shields/corne_dongle/corne_dongle.overlay` (50–26000, step 50) |
 | Sensor orientation       | uncomment `swap-xy;`, `invert-x;`, `invert-y;` in the overlay |
 | Report rate              | `CONFIG_PAW3395_REPORT_INTERVAL_MIN` in `corne_dongle.conf` (try `8` on USB) |
-| Pins                     | `corne_dongle.overlay` (keep SPI on high-frequency pins)     |
+| Pins                     | `corne_dongle.overlay` (keep SPI on P0.xx high-frequency pins) |
 | Keyboard / BT name       | `ZMK_KEYBOARD_NAME` in `boards/shields/corne_dongle/Kconfig.defconfig` |
 | Halves' settings         | `config/corne.conf` (applies to `corne_left`/`corne_right`)  |
 
