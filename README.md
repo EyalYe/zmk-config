@@ -69,12 +69,12 @@ with the halves' keys.
 
 ## Halves pinout
 
-Defined in `boards/shields/tbk_nini/`. Same as a stock Corne except **row 0 is on D8**
-(Corne uses D4), plus the 43rd key. Diodes are col2row.
+Defined in `boards/shields/tbk_nini/`. Same pins as a stock Corne, plus the 43rd key at
+RC(3,9) (right half, row 3, 4th column from the inside, D19). Diodes are col2row.
 
 | Matrix | Pro Micro pins (left half)       | Right half                  |
 | ------ | -------------------------------- | --------------------------- |
-| Rows 0–3 | D8, D5, D6, D7                 | same                        |
+| Rows 0–3 | D4, D5, D6, D7                 | same                        |
 | Cols 0–5 | D21, D20, D19, D18, D15, D14   | mirrored: D14, D15, D18, D19, D20, D21 |
 
 The halves have no trackball. The sensor is on the dongle.
@@ -251,7 +251,7 @@ tweaks.
 ```
 .
 ├── build.yaml                         # CI build matrix (dongle, left, right, reset)
-├── boards/shields/tbk_nini/           # TBK halves shield (43 keys, row 0 on D8)
+├── boards/shields/tbk_nini/           # TBK halves shield (43 keys)
 │   ├── tbk_nini.dtsi                  # rows, matrix transform
 │   ├── tbk_nini_left/right.overlay    # columns
 │   └── tbk_nini.keymap                # placeholder; halves don't run a keymap
@@ -285,5 +285,5 @@ tweaks.
 - **Keys on the wrong positions:** the halves' transform (`tbk_nini.dtsi`) and the first
   43 entries of `dongle_transform` must match. `corne_dongle.keymap` must have exactly 48
   bindings per layer.
-- **A whole row is dead:** row 0 is on D8 (TBK), not D4 (Corne). Check your wiring
-  against [Halves pinout](#halves-pinout).
+- **A whole row is dead:** check your wiring against [Halves pinout](#halves-pinout)
+  (`dongle_trackball` used D8 for row 0; this branch uses D4).

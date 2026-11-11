@@ -1,7 +1,6 @@
 /*
- * TBK Mini halves (pinout from the dongle_trackball branch).
- * Same as a stock Corne except row 0 is on D8 (not D4) and there is a
- * 43rd key at RC(3,9) on the right half, next to the thumb cluster.
+ * TBK Mini halves: same pins as a stock Corne, plus a 43rd key at
+ * RC(3,9) on the right half, next to the thumb cluster.
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
