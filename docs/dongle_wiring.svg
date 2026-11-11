@@ -8,6 +8,7 @@
   .title { fill: #f2f2f7; font: 700 20px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
+  .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
@@ -35,7 +36,7 @@
 <rect class="pinbox" x="130" y="343" width="70" height="26" rx="5"/><text class="pin" x="140" y="356">MOTION</text>
 <path class="wire" stroke="#f5576c" d="M200,356 C280,356 260,320 340,320"/><text class="pin" x="350" y="320">D4</text><text class="pin" x="392" y="320" fill="#9a9cb3">P0.22</text>
 <text class="pin" x="550" y="160" text-anchor="end">D8</text><text class="pin" x="512" y="160" text-anchor="end" fill="#9a9cb3">P1.04</text><path class="wire" stroke="#9a9cb3" d="M560,160 L670,160"/><rect class="key kind-mouse" x="670" y="146" width="28" height="28" rx="6"/><text class="pin" x="708" y="160">BTN1 · L Click</text>
-<text class="pin" x="550" y="200" text-anchor="end">D9</text><text class="pin" x="512" y="200" text-anchor="end" fill="#9a9cb3">P1.06</text><path class="wire" stroke="#9a9cb3" d="M560,200 L670,200"/><rect class="key kind-mouse" x="670" y="186" width="28" height="28" rx="6"/><text class="pin" x="708" y="200">BTN2 · M Click</text>
+<text class="pin" x="550" y="200" text-anchor="end">D9</text><text class="pin" x="512" y="200" text-anchor="end" fill="#9a9cb3">P1.06</text><path class="wire" stroke="#9a9cb3" d="M560,200 L670,200"/><rect class="key kind-mouse" x="670" y="186" width="28" height="28" rx="6"/><text class="pin" x="708" y="200">BTN2 · Scroll toggle</text>
 <text class="pin" x="550" y="240" text-anchor="end">D10</text><text class="pin" x="512" y="240" text-anchor="end" fill="#9a9cb3">P0.09</text><path class="wire" stroke="#9a9cb3" d="M560,240 L670,240"/><rect class="key kind-mouse" x="670" y="226" width="28" height="28" rx="6"/><text class="pin" x="708" y="240">BTN3 · R Click</text>
 <text class="pin" x="550" y="280" text-anchor="end">D16</text><text class="pin" x="512" y="280" text-anchor="end" fill="#9a9cb3">P0.10</text><path class="wire" stroke="#9a9cb3" d="M560,280 L670,280"/><rect class="key kind-mouse" x="670" y="266" width="28" height="28" rx="6"/><text class="pin" x="708" y="280">BTN4 · Back</text>
 <text class="pin" x="550" y="320" text-anchor="end">D14</text><text class="pin" x="512" y="320" text-anchor="end" fill="#9a9cb3">P1.11</text><path class="wire" stroke="#9a9cb3" d="M560,320 L670,320"/><rect class="key kind-mouse" x="670" y="306" width="28" height="28" rx="6"/><text class="pin" x="708" y="320">BTN5 · Fwd</text>

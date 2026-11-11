@@ -8,6 +8,18 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <input/processors.dtsi>
+
+#define SCROLL 4
+
+// In the scroll layer, sensor motion scrolls instead of moving the pointer.
+// Raise the divisor (16) for slower scrolling, lower it for faster.
+&trackball_listener {
+    scroller {
+        layers = <SCROLL>;
+        input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 16>;
+    };
+};
 
 / {
     macros {
@@ -20,7 +32,8 @@
     };
 
     // Last row in each layer = 5 dongle buttons:
-    // | LCLK | MCLK | RCLK | BACK (MB4) | FWD (MB5) |
+    // | LCLK | SCROLL toggle | RCLK | BACK (MB4) | FWD (MB5) |
+    // The middle button toggles the scroll layer on/off (press again to go back).
 
     keymap {
         compatible = "zmk,keymap";
@@ -37,7 +50,7 @@
 &kp LEFT_SHIFT    &kp A  &kp S  &kp D       &kp F  &kp G      &kp H      &kp J  &kp K          &kp L    &kp SEMI  &kp SQT
 &kp LEFT_CONTROL  &kp Z  &kp X  &kp C       &kp V  &kp B      &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH  &kp LEFT_GUI
                                 &kp ESCAPE  &mo 1  &kp RET    &kp SPACE  &mo 2  &kp BACKSPACE
-                        &mkp LCLK  &mkp MCLK  &mkp RCLK  &mkp MB4  &mkp MB5
+                        &mkp LCLK  &tog SCROLL  &mkp RCLK  &mkp MB4  &mkp MB5
             >;
         };
 
@@ -80,6 +93,17 @@
 &trans  &bt BT_CLR  &bootloader  &trans  &trans  &trans    &trans  &trans  &trans  &trans   &trans   &trans
                                  &trans  &trans  &trans    &trans  &trans  &trans
                         &trans     &trans     &trans     &trans    &trans
+            >;
+        };
+
+        scroll_layer {
+            // Keys fall through to the layer below; only the sensor behaves differently.
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+                        &mkp LCLK  &tog SCROLL  &mkp RCLK  &mkp MB4  &mkp MB5
             >;
         };
     };

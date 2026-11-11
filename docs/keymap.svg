@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="834" height="1862" viewBox="0 0 834 1862">
+<svg xmlns="http://www.w3.org/2000/svg" width="834" height="2310" viewBox="0 0 834 2310">
 <style>
   .bg { fill: #1e1f29; }
   .half { fill: #262837; stroke: #3a3d52; stroke-width: 1.5; }
@@ -8,6 +8,7 @@
   .title { fill: #f2f2f7; font: 700 20px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
+  .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
@@ -68,7 +69,7 @@
 <g transform="rotate(-8 522.4 282.4)"><rect class="key kind-layer" x="498.4" y="258.4" width="48" height="48" rx="7"/><text class="lbl small" x="522.4" y="282.4">▼ Raise</text></g>
 <g><rect class="key" x="557.8" y="255.7" width="48" height="48" rx="7"/><text class="lbl" x="581.8" y="279.7">Bksp</text></g>
 <g><rect class="key kind-mouse" x="294.5" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="318.5" y="385.0">L Click</text></g>
-<g><rect class="key kind-mouse" x="356.6" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="380.6" y="385.0">M Click</text></g>
+<g><rect class="key kind-toggle" x="356.6" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="380.6" y="385.0">⇄ Scroll</text></g>
 <g><rect class="key kind-mouse" x="418.7" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="442.7" y="385.0">R Click</text></g>
 <g><rect class="key kind-mouse" x="480.8" y="361.0" width="48" height="48" rx="7"/><text class="lbl" x="504.8" y="385.0">Back</text></g>
 <g><rect class="key kind-mouse" x="542.9" y="361.0" width="48" height="48" rx="7"/><text class="lbl" x="566.9" y="385.0">Fwd</text></g>
@@ -227,4 +228,56 @@
 <g><rect class="key kind-trans" x="356.6" y="1705.0" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="418.7" y="1705.0" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="480.8" y="1705.0" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="542.9" y="1705.0" width="48" height="48" rx="7"/></g><rect class="key kind-layer" x="34" y="1826" width="18" height="18" rx="4"/><text class="sub" x="60" y="1839">Layer hold</text><rect class="key kind-mouse" x="144" y="1826" width="18" height="18" rx="4"/><text class="sub" x="170" y="1839">Mouse button</text><rect class="key kind-bt" x="268" y="1826" width="18" height="18" rx="4"/><text class="sub" x="294" y="1839">Bluetooth</text><rect class="key kind-macro" x="371" y="1826" width="18" height="18" rx="4"/><text class="sub" x="397" y="1839">Shortcut</text><rect class="key kind-danger" x="467" y="1826" width="18" height="18" rx="4"/><text class="sub" x="493" y="1839">Bootloader</text><rect class="key kind-trans" x="577" y="1826" width="18" height="18" rx="4"/><text class="sub" x="603" y="1839">Transparent</text></svg>
+<g><rect class="key kind-trans" x="542.9" y="1705.0" width="48" height="48" rx="7"/></g>
+<text class="title" x="34" y="1838">Scroll layer</text>
+<rect class="half" x="24" y="1846" width="338" height="267.8" rx="16"/>
+<rect class="half" x="466.79999999999995" y="1846" width="338" height="267.8" rx="16"/>
+<rect class="half" x="208.1" y="2136.8" width="413.1" height="99.9" rx="16"/>
+<circle class="sensor" cx="251.3" cy="2180.0" r="29.7"/><circle class="sensor-dot" cx="251.3" cy="2180.0" r="4"/><text class="lbl small" x="251.3" y="2220.5">PAW3395 → scroll</text>
+<g><rect class="key kind-trans" x="34.0" y="1880.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="88.0" y="1880.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="142.0" y="1864.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="196.0" y="1856.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="250.0" y="1864.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="304.0" y="1872.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="476.8" y="1872.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="530.8" y="1864.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="584.8" y="1856.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="638.8" y="1864.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="692.8" y="1880.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="746.8" y="1880.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="34.0" y="1934.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="88.0" y="1934.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="142.0" y="1918.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="196.0" y="1910.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="250.0" y="1918.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="304.0" y="1926.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="476.8" y="1926.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="530.8" y="1918.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="584.8" y="1910.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="638.8" y="1918.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="692.8" y="1934.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="746.8" y="1934.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="34.0" y="1988.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="88.0" y="1988.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="142.0" y="1972.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="196.0" y="1964.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="250.0" y="1972.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="304.0" y="1980.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="476.8" y="1980.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="530.8" y="1972.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="584.8" y="1964.0" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="638.8" y="1972.1" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="692.8" y="1988.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="746.8" y="1988.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="223.0" y="2047.7" width="48" height="48" rx="7"/></g>
+<g transform="rotate(8 306.4 2074.4)"><rect class="key kind-trans" x="282.4" y="2050.4" width="48" height="48" rx="7"/></g>
+<g transform="rotate(18 368.5 2087.9)"><rect class="key kind-trans" x="344.5" y="2063.9" width="48" height="48" rx="7"/></g>
+<g transform="rotate(-18 460.3 2087.9)"><rect class="key kind-trans" x="436.3" y="2063.9" width="48" height="48" rx="7"/></g>
+<g transform="rotate(-8 522.4 2074.4)"><rect class="key kind-trans" x="498.4" y="2050.4" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-trans" x="557.8" y="2047.7" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-mouse" x="294.5" y="2153.0" width="48" height="48" rx="7"/><text class="lbl small" x="318.5" y="2177.0">L Click</text></g>
+<g><rect class="key kind-toggle" x="356.6" y="2153.0" width="48" height="48" rx="7"/><text class="lbl small" x="380.6" y="2177.0">⇄ Scroll</text></g>
+<g><rect class="key kind-mouse" x="418.7" y="2153.0" width="48" height="48" rx="7"/><text class="lbl small" x="442.7" y="2177.0">R Click</text></g>
+<g><rect class="key kind-mouse" x="480.8" y="2153.0" width="48" height="48" rx="7"/><text class="lbl" x="504.8" y="2177.0">Back</text></g>
+<g><rect class="key kind-mouse" x="542.9" y="2153.0" width="48" height="48" rx="7"/><text class="lbl" x="566.9" y="2177.0">Fwd</text></g><rect class="key kind-layer" x="34" y="2274" width="18" height="18" rx="4"/><text class="sub" x="60" y="2287">Layer hold</text><rect class="key kind-toggle" x="144" y="2274" width="18" height="18" rx="4"/><text class="sub" x="170" y="2287">Layer toggle</text><rect class="key kind-mouse" x="268" y="2274" width="18" height="18" rx="4"/><text class="sub" x="294" y="2287">Mouse button</text><rect class="key kind-bt" x="392" y="2274" width="18" height="18" rx="4"/><text class="sub" x="418" y="2287">Bluetooth</text><rect class="key kind-macro" x="495" y="2274" width="18" height="18" rx="4"/><text class="sub" x="521" y="2287">Shortcut</text><rect class="key kind-danger" x="591" y="2274" width="18" height="18" rx="4"/><text class="sub" x="617" y="2287">Bootloader</text><rect class="key kind-trans" x="701" y="2274" width="18" height="18" rx="4"/><text class="sub" x="727" y="2287">Transparent</text></svg>

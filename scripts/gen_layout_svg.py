@@ -16,6 +16,7 @@ out.mkdir(exist_ok=True)
 
 # ---------- parse ----------
 keymap = re.sub(r"//.*", "", keymap)
+DEFINES = dict(re.findall(r"#define\s+(\w+)\s+(\d+)", keymap))
 keymap_body = keymap[keymap.index("compatible = \"zmk,keymap\""):]
 layers = re.findall(r"(\w+)\s*\{[^{}]*?bindings\s*=\s*<(.*?)>;", keymap_body, re.S)
 
@@ -62,7 +63,9 @@ def label(binding):
     if beh == "mkp":
         return key_label(param), "kind-mouse"
     if beh == "mo":
-        return f"▼ {pretty(LAYER_NAMES[int(param)])}", "kind-layer"
+        return f"▼ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-layer"
+    if beh == "tog":
+        return f"⇄ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-toggle"
     if beh == "trans":
         return "", "kind-trans"
     if beh == "none":
@@ -76,9 +79,13 @@ def label(binding):
     return beh, ""
 
 
+def layer_index(param):
+    return int(DEFINES.get(param, param))
+
+
 def pretty(name):
     return {"default_layer": "Base", "lower_layer": "Lower", "raise_layer": "Raise",
-            "F_keys": "Fn"}.get(name, name)
+            "F_keys": "Fn", "scroll_layer": "Scroll"}.get(name, name)
 
 
 # ---------- geometry ----------
@@ -122,6 +129,7 @@ STYLE = """
   .title { fill: #f2f2f7; font: 700 20px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
+  .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
@@ -165,7 +173,8 @@ def layer_svg(name, bindings, ox, oy, with_title=True):
     scx, scy = dx + 0.8 * U, dy + 0.8 * U
     parts.append(f'<circle class="sensor" cx="{scx:.1f}" cy="{scy:.1f}" r="{0.55 * U:.1f}"/>'
                  f'<circle class="sensor-dot" cx="{scx:.1f}" cy="{scy:.1f}" r="4"/>'
-                 f'<text class="lbl small" x="{scx:.1f}" y="{scy + 0.75 * U:.1f}">PAW3395</text>')
+                 f'<text class="lbl small" x="{scx:.1f}" y="{scy + 0.75 * U:.1f}">'
+                 f'{"PAW3395 → scroll" if name == "scroll_layer" else "PAW3395"}</text>')
     for i, b in enumerate(bindings):
         text, kind = label(b)
         if i < 42:
@@ -186,7 +195,7 @@ def svg(width, height, body):
             f"{body}</svg>\n")
 
 
-LEGEND = [("kind-layer", "Layer hold"), ("kind-mouse", "Mouse button"), ("kind-bt", "Bluetooth"),
+LEGEND = [("kind-layer", "Layer hold"), ("kind-toggle", "Layer toggle"), ("kind-mouse", "Mouse button"), ("kind-bt", "Bluetooth"),
           ("kind-macro", "Shortcut"), ("kind-danger", "Bootloader"), ("kind-trans", "Transparent")]
 
 
@@ -222,7 +231,7 @@ WIRES = [
 ]
 BUTTONS = [
     ("D8", "P1.04", "BTN1 · L Click"),
-    ("D9", "P1.06", "BTN2 · M Click"),
+    ("D9", "P1.06", "BTN2 · Scroll toggle"),
     ("D10", "P0.09", "BTN3 · R Click"),
     ("D16", "P0.10", "BTN4 · Back"),
     ("D14", "P1.11", "BTN5 · Fwd"),

@@ -94,9 +94,10 @@ The sensor runs on `spi2` at 4 MHz, at **800 CPI** by default. See [Customizing]
 
 ## Keymap
 
-Four layers. The halves have the same bindings as the original `corne.keymap`, and each
+Five layers. The halves have the same bindings as the original `corne.keymap`, and each
 layer adds a row for the 5 dongle buttons. Hold **Lower** or **Raise** for those layers;
-holding **Fn** from either one opens the F-key layer.
+holding **Fn** from either one opens the F-key layer. The middle dongle button toggles the
+**Scroll** layer, where the sensor scrolls instead of moving the pointer.
 
 ![Full keymap](docs/keymap.svg)
 
@@ -107,18 +108,23 @@ holding **Fn** from either one opens the F-key layer.
 ![Lower](docs/layer_lower.svg)
 ![Raise](docs/layer_raise.svg)
 ![Fn](docs/layer_fn.svg)
+![Scroll](docs/layer_scroll.svg)
 
 </details>
 
-| Dongle button | Base layer      |
-| ------------- | --------------- |
-| BTN1          | Left click      |
-| BTN2          | Middle click    |
-| BTN3          | Right click     |
-| BTN4          | Back (MB4)      |
-| BTN5          | Forward (MB5)   |
+| Dongle button | Base layer         |
+| ------------- | ------------------ |
+| BTN1          | Left click         |
+| BTN2          | Scroll mode toggle |
+| BTN3          | Right click        |
+| BTN4          | Back (MB4)         |
+| BTN5          | Forward (MB5)      |
 
-Other layers leave them transparent, so they act as mouse buttons on every layer.
+Other layers leave them transparent, so they work the same on every layer.
+
+**Scroll mode:** press BTN2 once and moving the sensor scrolls (vertical and horizontal).
+Press BTN2 again to go back to pointer mode. It's a toggle, not a hold, and there is no
+middle click.
 
 > **Bootloader:** `Fn` + the `X` key position (red key) puts the **left half** into
 > bootloader mode. To get the dongle into the bootloader, double-tap
@@ -192,9 +198,10 @@ Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
 | Pins                     | `corne_dongle.overlay` (keep SPI on P0.xx high-frequency pins) |
 | Keyboard / BT name       | `ZMK_KEYBOARD_NAME` in `boards/shields/corne_dongle/Kconfig.defconfig` |
 | Halves' settings         | `config/corne.conf` (applies to `corne_left`/`corne_right`)  |
+| Scroll speed             | `&zip_scroll_scaler 1 16` in `config/corne_dongle.keymap` (bigger divisor = slower) |
 
-Ideas: use ZMK [input processors](https://zmk.dev/docs/keymaps/input-processors) to
-turn the sensor into a scroll wheel while a layer is held, or to scale its speed.
+Ideas: use more ZMK [input processors](https://zmk.dev/docs/keymaps/input-processors), e.g. to
+scale the pointer speed.
 
 ## Repository layout
 
@@ -225,6 +232,9 @@ turn the sensor into a scroll wheel while a layer is held, or to scale its speed
   build with `CONFIG_PAW3395_LOG_LEVEL_DBG=y` and `CONFIG_ZMK_USB_LOGGING=y`, and watch
   the dongle's USB serial output.
 - **Pointer moves the wrong way:** use `swap-xy` / `invert-x` / `invert-y` in the overlay.
+- **Scroll goes the wrong way:** append `&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT`
+  (and/or `INPUT_TRANSFORM_X_INVERT`) to the scroller's `input-processors` in
+  `corne_dongle.keymap`.
 - **Sensor takes a while to start:** set `CONFIG_PAW3395_INIT_POWER_UP_EXTRA_DELAY_MS`.
 - **Keys on the wrong positions:** the halves must use the stock 6-column Corne transform.
   `corne_dongle.keymap` must have exactly 47 bindings per layer.

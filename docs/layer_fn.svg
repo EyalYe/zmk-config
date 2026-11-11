@@ -8,6 +8,7 @@
   .title { fill: #f2f2f7; font: 700 20px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
+  .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
