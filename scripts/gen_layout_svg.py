@@ -29,7 +29,7 @@ def split_bindings(text):
 LABELS = {
     "TAB": "Tab", "RET": "Enter", "SPACE": "Space", "BACKSPACE": "Bksp", "ESCAPE": "Esc",
     "DEL": "Del", "LEFT_SHIFT": "Shift", "LEFT_CONTROL": "Ctrl", "LEFT_ALT": "Alt",
-    "RIGHT_ALT": "AltGr", "LEFT_GUI": "Cmd", "LGUI": "Cmd", "SEMI": ";", "SQT": "'",
+    "RIGHT_ALT": "AltGr", "LEFT_GUI": "Win", "LGUI": "Win", "SEMI": ";", "SQT": "'",
     "COMMA": ",", "DOT": ".", "FSLH": "/", "EXCL": "!", "AT": "@", "HASH": "#",
     "DLLR": "$", "PRCNT": "%", "CARET": "^", "AMPS": "&", "ASTRK": "*", "LPAR": "(",
     "RPAR": ")", "MINUS": "-", "EQUAL": "=", "LBKT": "[", "RBKT": "]", "BSLH": "\\",
@@ -37,10 +37,13 @@ LABELS = {
     "TILDE": "~", "LEFT": "←", "RIGHT": "→", "UP": "↑", "UP_ARROW": "↑",
     "DOWN": "↓", "DOWN_ARROW": "↓", "PAGE_UP": "PgUp", "PAGE_DOWN": "PgDn",
     "C_VOL_DN": "Vol−", "C_VOLUME_UP": "Vol+", "C_PREV": "Prev", "C_NEXT": "Next",
-    "C_PLAY_PAUSE": "Play", "NUMBER_4": "4",
+    "C_PLAY_PAUSE": "Play", "CAPSLOCK": "Caps", "BT_CLR_ALL": "BT Clr All",
     "LCLK": "L Click", "RCLK": "R Click", "MCLK": "M Click", "MB4": "Back", "MB5": "Fwd",
 }
-MODS = {"LS": "⇧", "LC": "⌃", "LG": "⌘", "LA": "⌥"}
+RGB = {"RGB_ON": "RGB On", "RGB_OFF": "RGB Off", "RGB_HUI": "Hue+", "RGB_HUD": "Hue−",
+       "RGB_SAI": "Sat+", "RGB_SAD": "Sat−", "RGB_BRI": "Bri+", "RGB_BRD": "Bri−",
+       "RGB_SPI": "Spd+", "RGB_SPD": "Spd−", "RGB_EFF": "Eff+", "RGB_EFR": "Eff−"}
+MODS = {"LS": "⇧", "LC": "⌃", "LG": "⊞", "LA": "⌥"}
 LAYER_NAMES = {i: n for i, (n, _) in enumerate(layers)}
 
 
@@ -50,6 +53,10 @@ def key_label(param):
         return MODS[m.group(1)] + key_label(m.group(2))
     if re.fullmatch(r"N\d", param):
         return param[1]
+    if param.startswith("NUMBER_"):
+        return param[7:]
+    if len(param) == 1:
+        return param
     return LABELS.get(param, param)
 
 
@@ -57,7 +64,7 @@ def label(binding):
     parts = binding[1:].split(None, 1)
     beh, param = parts[0], (parts[1] if len(parts) > 1 else "")
     if beh == "kp":
-        if param == "LS(LC(LG(NUMBER_4)))":
+        if param in ("LS(LC(LG(NUMBER_4)))", "LS(LG(S))"):
             return "Shot", "kind-macro"
         return key_label(param), ""
     if beh == "mkp":
@@ -66,13 +73,17 @@ def label(binding):
         return f"▼ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-layer"
     if beh == "tog":
         return f"⇄ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-toggle"
+    if beh == "to":
+        return f"→ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-toggle"
+    if beh == "rgb_ug":
+        return RGB.get(param, param), "kind-rgb"
     if beh == "trans":
         return "", "kind-trans"
     if beh == "none":
         return "", "kind-trans"
     if beh == "bt":
-        if param == "BT_CLR":
-            return "BT Clr", "kind-bt"
+        if param in ("BT_CLR", "BT_CLR_ALL"):
+            return key_label(param) if param != "BT_CLR" else "BT Clr", "kind-bt"
         return f"BT {int(param.split()[-1]) + 1}", "kind-bt"
     if beh == "bootloader":
         return "Boot", "kind-danger"
@@ -85,7 +96,8 @@ def layer_index(param):
 
 def pretty(name):
     return {"default_layer": "Base", "lower_layer": "Lower", "raise_layer": "Raise",
-            "F_keys": "Fn", "scroll_layer": "Scroll"}.get(name, name)
+            "F_keys": "Fn", "scroll_layer": "Scroll", "gaming": "Gaming",
+            "layer_5": "Num"}.get(name, name)
 
 
 # ---------- geometry ----------
@@ -130,6 +142,7 @@ STYLE = """
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
   .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
+  .kind-rgb { fill: #4a2236; stroke: #f57cb6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
@@ -195,30 +208,34 @@ def svg(width, height, body):
             f"{body}</svg>\n")
 
 
-LEGEND = [("kind-layer", "Layer hold"), ("kind-toggle", "Layer toggle"), ("kind-mouse", "Mouse button"), ("kind-bt", "Bluetooth"),
-          ("kind-macro", "Shortcut"), ("kind-danger", "Bootloader"), ("kind-trans", "Transparent")]
+LEGEND = [("kind-layer", "Layer hold"), ("kind-toggle", "Layer switch"), ("kind-mouse", "Mouse button"), ("kind-bt", "Bluetooth"),
+          ("kind-macro", "Shortcut"), ("kind-rgb", "Underglow"), ("kind-danger", "Bootloader"), ("kind-trans", "Transparent")]
 
 
-def legend(ox, oy):
+def legend(ox, oy, used):
     s, x = [], ox
     for cls, txt in LEGEND:
+        if cls not in used:
+            continue
         s.append(f'<rect class="key {cls}" x="{x}" y="{oy}" width="18" height="18" rx="4"/>'
                  f'<text class="sub" x="{x + 26}" y="{oy + 13}">{txt}</text>')
-        x += 40 + len(txt) * 7
+        x += 34 + len(txt) * 6.5
     return "".join(s)
 
 
 all_bodies = []
+used_kinds = set()
 for idx, (name, text) in enumerate(layers):
     b = split_bindings(text)
+    used_kinds |= {label(x)[1] for x in b}
     assert len(b) == 47, f"{name}: {len(b)} bindings"
     body = layer_svg(name, b, PAD + 10, PAD + 40)
-    (out / f"layer_{pretty(name).lower()}.svg").write_text(svg(W, LAYER_H, body))
+    (out / f"layer_{pretty(name).lower().replace(' ', '_')}.svg").write_text(svg(W, LAYER_H, body))
     all_bodies.append(layer_svg(name, b, PAD + 10, PAD + 40 + idx * LAYER_H))
 
 total_h = LAYER_H * len(layers) + 70
 (out / "keymap.svg").write_text(
-    svg(W, total_h, "\n".join(all_bodies) + legend(PAD + 10, total_h - 36)))
+    svg(W, total_h, "\n".join(all_bodies) + legend(PAD + 10, total_h - 36, used_kinds)))
 
 # ---------- wiring diagram ----------
 WIRES = [

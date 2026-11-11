@@ -9,6 +9,7 @@
   .sub { fill: #9a9cb3; font: 500 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; }
   .kind-layer { fill: #3b3363; stroke: #8b7cf6; }
   .kind-toggle { fill: #4a2a55; stroke: #e07cf6; }
+  .kind-rgb { fill: #4a2236; stroke: #f57cb6; }
   .kind-mouse { fill: #1f4a4a; stroke: #3cc9b4; }
   .kind-bt { fill: #1f3a5c; stroke: #4c9cf5; }
   .kind-danger { fill: #5c1f2a; stroke: #f5576c; }
@@ -38,30 +39,30 @@
 <g><rect class="key" x="638.8" y="72.1" width="48" height="48" rx="7"/><text class="lbl" x="662.8" y="96.1">F10</text></g>
 <g><rect class="key" x="692.8" y="88.3" width="48" height="48" rx="7"/><text class="lbl" x="716.8" y="112.3">F11</text></g>
 <g><rect class="key" x="746.8" y="88.3" width="48" height="48" rx="7"/><text class="lbl" x="770.8" y="112.3">F12</text></g>
-<g><rect class="key kind-trans" x="34.0" y="142.3" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="88.0" y="142.3" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="142.0" y="126.1" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="196.0" y="118.0" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="250.0" y="126.1" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="304.0" y="134.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-rgb" x="34.0" y="142.3" width="48" height="48" rx="7"/><text class="lbl small" x="58.0" y="166.3">RGB On</text></g>
+<g><rect class="key kind-rgb" x="88.0" y="142.3" width="48" height="48" rx="7"/><text class="lbl" x="112.0" y="166.3">Hue+</text></g>
+<g><rect class="key kind-rgb" x="142.0" y="126.1" width="48" height="48" rx="7"/><text class="lbl" x="166.0" y="150.1">Sat+</text></g>
+<g><rect class="key kind-rgb" x="196.0" y="118.0" width="48" height="48" rx="7"/><text class="lbl" x="220.0" y="142.0">Bri+</text></g>
+<g><rect class="key kind-rgb" x="250.0" y="126.1" width="48" height="48" rx="7"/><text class="lbl" x="274.0" y="150.1">Spd+</text></g>
+<g><rect class="key kind-rgb" x="304.0" y="134.2" width="48" height="48" rx="7"/><text class="lbl" x="328.0" y="158.2">Eff+</text></g>
 <g><rect class="key kind-trans" x="476.8" y="134.2" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="530.8" y="126.1" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="584.8" y="118.0" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="638.8" y="126.1" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="692.8" y="142.3" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="746.8" y="142.3" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="34.0" y="196.3" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-bt" x="88.0" y="196.3" width="48" height="48" rx="7"/><text class="lbl small" x="112.0" y="220.3">BT Clr</text></g>
-<g><rect class="key kind-danger" x="142.0" y="180.1" width="48" height="48" rx="7"/><text class="lbl" x="166.0" y="204.1">Boot</text></g>
-<g><rect class="key kind-trans" x="196.0" y="172.0" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="250.0" y="180.1" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="304.0" y="188.2" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-rgb" x="34.0" y="196.3" width="48" height="48" rx="7"/><text class="lbl small" x="58.0" y="220.3">RGB Off</text></g>
+<g><rect class="key kind-rgb" x="88.0" y="196.3" width="48" height="48" rx="7"/><text class="lbl" x="112.0" y="220.3">Hue−</text></g>
+<g><rect class="key kind-rgb" x="142.0" y="180.1" width="48" height="48" rx="7"/><text class="lbl" x="166.0" y="204.1">Sat−</text></g>
+<g><rect class="key kind-rgb" x="196.0" y="172.0" width="48" height="48" rx="7"/><text class="lbl" x="220.0" y="196.0">Bri−</text></g>
+<g><rect class="key kind-rgb" x="250.0" y="180.1" width="48" height="48" rx="7"/><text class="lbl" x="274.0" y="204.1">Spd−</text></g>
+<g><rect class="key kind-rgb" x="304.0" y="188.2" width="48" height="48" rx="7"/><text class="lbl" x="328.0" y="212.2">Eff−</text></g>
 <g><rect class="key kind-trans" x="476.8" y="188.2" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="530.8" y="180.1" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="584.8" y="172.0" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="638.8" y="180.1" width="48" height="48" rx="7"/></g>
 <g><rect class="key kind-trans" x="692.8" y="196.3" width="48" height="48" rx="7"/></g>
-<g><rect class="key kind-trans" x="746.8" y="196.3" width="48" height="48" rx="7"/></g>
+<g><rect class="key kind-bt" x="746.8" y="196.3" width="48" height="48" rx="7"/><text class="lbl small" x="770.8" y="220.3">BT Clr All</text></g>
 <g><rect class="key kind-trans" x="223.0" y="255.7" width="48" height="48" rx="7"/></g>
 <g transform="rotate(8 306.4 282.4)"><rect class="key kind-trans" x="282.4" y="258.4" width="48" height="48" rx="7"/></g>
 <g transform="rotate(18 368.5 295.9)"><rect class="key kind-trans" x="344.5" y="271.9" width="48" height="48" rx="7"/></g>

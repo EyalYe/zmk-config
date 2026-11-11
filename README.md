@@ -1,6 +1,8 @@
-# Corne + Dongle ZMK config
+# TBK-MINI-CLICKY + Dongle ZMK config
 
 ZMK firmware for a wireless **Corne (crkbd) split keyboard** with a **USB/BLE dongle**.
+The halves use the Windows keymap, settings and name (`TBK-MINI-CLICKY`) from the
+`windows` branch, with the stock ZMK Corne pinout.
 The dongle runs the keymap and connects to the computer. It also has a **PAW3395 optical
 sensor** (for a trackball or mouse) and **5 mouse buttons**.
 
@@ -94,10 +96,20 @@ The sensor runs on `spi2` at 4 MHz, at **800 CPI** by default. See [Customizing]
 
 ## Keymap
 
-Five layers. The halves have the same bindings as the original `corne.keymap`, and each
-layer adds a row for the 5 dongle buttons. Hold **Lower** or **Raise** for those layers;
-holding **Fn** from either one opens the F-key layer. The middle dongle button toggles the
-**Scroll** layer, where the sensor scrolls instead of moving the pointer.
+Seven layers. The halves have the same bindings as the `windows` branch's `corne.keymap`,
+and each layer adds a row for the 5 dongle buttons. Hold **Lower** or **Raise** for those
+layers; holding **Fn** from either one opens the F-key/underglow layer. The middle dongle
+button toggles the **Scroll** layer, where the sensor scrolls instead of moving the pointer.
+
+Combos (not shown in the images):
+
+| Keys (pressed together)              | Action                         |
+| ------------------------------------ | ------------------------------ |
+| `Shift` `A` `S` (positions 12–14)    | Switch to the **Gaming** layer |
+| `Ctrl` `Z` `X` (positions 24–26)     | Switch back to **Base**        |
+
+In Gaming, hold the middle left thumb key for the **Num** layer. Switching layers with a combo
+also turns scroll mode off.
 
 ![Full keymap](docs/keymap.svg)
 
@@ -108,6 +120,8 @@ holding **Fn** from either one opens the F-key layer. The middle dongle button t
 ![Lower](docs/layer_lower.svg)
 ![Raise](docs/layer_raise.svg)
 ![Fn](docs/layer_fn.svg)
+![Gaming](docs/layer_gaming.svg)
+![Num](docs/layer_gaming_num.svg)
 ![Scroll](docs/layer_scroll.svg)
 
 </details>
@@ -126,9 +140,8 @@ Other layers leave them transparent, so they work the same on every layer.
 Press BTN2 again to go back to pointer mode. It's a toggle, not a hold, and there is no
 middle click.
 
-> **Bootloader:** `Fn` + the `X` key position (red key) puts the **left half** into
-> bootloader mode. To get the dongle into the bootloader, double-tap
-> its reset button.
+> **Bootloader:** this keymap has no bootloader key. To flash any board, double-tap its
+> reset button.
 
 The images are generated from the keymap. After editing
 [`config/corne_dongle.keymap`](config/corne_dongle.keymap), regenerate them with:
@@ -184,8 +197,8 @@ Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
 3. Power the dongle (USB) and both halves. The halves pair with the dongle automatically.
 4. Connect the computer:
    - **USB:** works immediately.
-   - **Bluetooth:** pair with `corne_mac`. Lower + `A` `S` `D` `F` `G` selects BT profiles 1–5.
-     `Fn` + `Z` clears the current profile.
+   - **Bluetooth:** pair with `TBK-MINI-CLICKY`. Lower + `A` `S` `D` `F` `G` selects BT
+     profiles 1–5. `Fn` + the bottom-right key clears all profiles.
 
 ## Customizing
 
@@ -196,8 +209,9 @@ Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
 | Sensor orientation       | uncomment `swap-xy;`, `invert-x;`, `invert-y;` in the overlay |
 | Report rate              | `CONFIG_PAW3395_REPORT_INTERVAL_MIN` in `corne_dongle.conf` (try `8` on USB) |
 | Pins                     | `corne_dongle.overlay` (keep SPI on P0.xx high-frequency pins) |
-| Keyboard / BT name       | `ZMK_KEYBOARD_NAME` in `boards/shields/corne_dongle/Kconfig.defconfig` |
-| Halves' settings         | `config/corne.conf` (applies to `corne_left`/`corne_right`)  |
+| Keyboard / BT name       | `CONFIG_ZMK_KEYBOARD_NAME` in `config/corne.conf` (the dongle loads it too, and it overrides `Kconfig.defconfig`) |
+| Halves' settings         | `config/corne.conf` (loaded by `corne_left`, `corne_right` and the dongle) |
+| Underglow                | uncomment `CONFIG_ZMK_RGB_UNDERGLOW` / `CONFIG_WS2812_STRIP` in `config/corne.conf`; the `Fn` RGB keys do nothing until then |
 | Scroll speed             | `&zip_scroll_scaler 1 16` in `config/corne_dongle.keymap` (bigger divisor = slower) |
 
 Ideas: use more ZMK [input processors](https://zmk.dev/docs/keymaps/input-processors), e.g. to
