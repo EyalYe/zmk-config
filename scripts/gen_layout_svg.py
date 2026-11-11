@@ -18,7 +18,7 @@ out.mkdir(exist_ok=True)
 keymap = re.sub(r"//.*", "", keymap)
 DEFINES = dict(re.findall(r"#define\s+(\w+)\s+(\d+)", keymap))
 keymap_body = keymap[keymap.index("compatible = \"zmk,keymap\""):]
-layers = re.findall(r"(\w+)\s*\{[^{}]*?bindings\s*=\s*<(.*?)>;", keymap_body, re.S)
+layers = re.findall(r"(\w+)\s*\{[^{}]*?bindings\s*=\s*<\s*\n(.*?)>;", keymap_body, re.S)
 
 
 def split_bindings(text):
@@ -29,6 +29,9 @@ def split_bindings(text):
 LABELS = {
     "TAB": "Tab", "RET": "Enter", "SPACE": "Space", "BACKSPACE": "Bksp", "ESCAPE": "Esc",
     "DEL": "Del", "LEFT_SHIFT": "Shift", "LEFT_CONTROL": "Ctrl", "LEFT_ALT": "Alt",
+    "LSHFT": "Shift", "LCTRL": "Ctrl", "RALT": "AltGr", "ESC": "Esc", "BSPC": "Bksp",
+    "PG_UP": "PgUp", "PG_DN": "PgDn", "C_VOL_UP": "Vol+", "C_PP": "Play", "CAPS": "Caps",
+    "MB1": "L Click", "MB2": "R Click", "MB3": "M Click", "F4": "F4",
     "RIGHT_ALT": "AltGr", "LEFT_GUI": "Win", "LGUI": "Win", "SEMI": ";", "SQT": "'",
     "COMMA": ",", "DOT": ".", "FSLH": "/", "EXCL": "!", "AT": "@", "HASH": "#",
     "DLLR": "$", "PRCNT": "%", "CARET": "^", "AMPS": "&", "ASTRK": "*", "LPAR": "(",
@@ -43,7 +46,8 @@ LABELS = {
 RGB = {"RGB_ON": "RGB On", "RGB_OFF": "RGB Off", "RGB_HUI": "Hue+", "RGB_HUD": "Hue−",
        "RGB_SAI": "Sat+", "RGB_SAD": "Sat−", "RGB_BRI": "Bri+", "RGB_BRD": "Bri−",
        "RGB_SPI": "Spd+", "RGB_SPD": "Spd−", "RGB_EFF": "Eff+", "RGB_EFR": "Eff−"}
-MODS = {"LS": "⇧", "LC": "⌃", "LG": "⊞", "LA": "⌥"}
+MODS = {"LS": "⇧", "LC": "⌃", "LG": "⊞", "LA": "Alt+"}
+MOVES = {"MOVE_UP": "Ms ↑", "MOVE_DOWN": "Ms ↓", "MOVE_LEFT": "Ms ←", "MOVE_RIGHT": "Ms →"}
 LAYER_NAMES = {i: n for i, (n, _) in enumerate(layers)}
 
 
@@ -75,6 +79,10 @@ def label(binding):
         return f"⇄ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-toggle"
     if beh == "to":
         return f"→ {pretty(LAYER_NAMES[layer_index(param)])}", "kind-toggle"
+    if beh == "mmv":
+        return MOVES.get(param, param), "kind-mouse"
+    if beh == "studio_unlock":
+        return "Studio", "kind-bt"
     if beh == "rgb_ug":
         return RGB.get(param, param), "kind-rgb"
     if beh == "trans":
@@ -97,7 +105,18 @@ def layer_index(param):
 def pretty(name):
     return {"default_layer": "Base", "lower_layer": "Lower", "raise_layer": "Raise",
             "F_keys": "Fn", "scroll_layer": "Scroll", "gaming": "Gaming",
-            "layer_5": "Num"}.get(name, name)
+            "layer_5": "Num", "DEF": "Base", "NUM": "Num", "SYM": "Sym", "SYS": "Sys",
+            "GAME": "Game", "GN": "GNum", "ONEHAND": "1H", "ONEHAND2": "1H 2",
+            "SCRL": "Scroll", "SNYP": "Snipe"}.get(name, name)
+
+
+SENSOR_MODE = {"scroll_layer": "PAW3395 → scroll", "SCRL": "PAW3395 → scroll",
+               "SNYP": "PAW3395 → ⅓ speed"}
+
+# Big layer titles; key labels use the short pretty() name
+TITLES = {"DEF": "Base", "NUM": "Num", "SYM": "Sym", "SYS": "Sys", "GAME": "Game",
+          "GN": "Game Num", "ONEHAND": "One-hand", "ONEHAND2": "One-hand 2",
+          "SCRL": "Scroll", "SNYP": "Snipe"}
 
 
 # ---------- geometry ----------
@@ -110,7 +129,7 @@ PAD = 24
 
 
 def key_positions():
-    """(x, y, rot, cx, cy) in units for the 42 Corne keys + 5 dongle keys."""
+    """(x, y, rot) in units for the 43 TBK keys (dongle keys are placed separately)."""
     pos = []
     right_x0 = 6 + SPLIT_GAP
     for row in range(3):
@@ -122,6 +141,8 @@ def key_positions():
     thumbs_r = [(right_x0 + 6 - 1 - (x - 0) + 0, y, -r) for x, y, r in thumbs_l]
     thumbs_r = [(right_x0 + (5 - x), y, -r) for x, y, r in thumbs_l][::-1]
     pos += thumbs_l + thumbs_r
+    # TBK: extra right-hand key at RC(3,9), outside the thumb cluster
+    pos.append((right_x0 + 2.75, 3.55, 0))
     return pos
 
 
@@ -173,7 +194,7 @@ def draw_key(x, y, rot, text, kind, ox, oy):
 def layer_svg(name, bindings, ox, oy, with_title=True):
     parts = []
     if with_title:
-        parts.append(f'<text class="title" x="{ox}" y="{oy - 18}">{escape(pretty(name))} layer</text>')
+        parts.append(f'<text class="title" x="{ox}" y="{oy - 18}">{escape(TITLES.get(name, pretty(name)))} layer</text>')
     # half outlines
     for hx in (0, 6 + SPLIT_GAP):
         parts.append(f'<rect class="half" x="{ox + hx * U - 10}" y="{oy - 10}" width="{6 * U + 14}" '
@@ -187,13 +208,13 @@ def layer_svg(name, bindings, ox, oy, with_title=True):
     parts.append(f'<circle class="sensor" cx="{scx:.1f}" cy="{scy:.1f}" r="{0.55 * U:.1f}"/>'
                  f'<circle class="sensor-dot" cx="{scx:.1f}" cy="{scy:.1f}" r="4"/>'
                  f'<text class="lbl small" x="{scx:.1f}" y="{scy + 0.75 * U:.1f}">'
-                 f'{"PAW3395 → scroll" if name == "scroll_layer" else "PAW3395"}</text>')
+                 f'{SENSOR_MODE.get(name, "PAW3395")}</text>')
     for i, b in enumerate(bindings):
         text, kind = label(b)
-        if i < 42:
+        if i < len(CORNE):
             x, y, r = CORNE[i]
         else:
-            x, y, r = DONGLE_X0 + (i - 42) * 1.15, DONGLE_Y, 0
+            x, y, r = DONGLE_X0 + (i - len(CORNE)) * 1.15, DONGLE_Y, 0
         parts.append(draw_key(x, y, r, text, kind, ox, oy))
     return "\n".join(parts)
 
@@ -228,9 +249,9 @@ used_kinds = set()
 for idx, (name, text) in enumerate(layers):
     b = split_bindings(text)
     used_kinds |= {label(x)[1] for x in b}
-    assert len(b) == 47, f"{name}: {len(b)} bindings"
+    assert len(b) == len(CORNE) + 5, f"{name}: {len(b)} bindings"
     body = layer_svg(name, b, PAD + 10, PAD + 40)
-    (out / f"layer_{pretty(name).lower().replace(' ', '_')}.svg").write_text(svg(W, LAYER_H, body))
+    (out / f"layer_{name.lower()}.svg").write_text(svg(W, LAYER_H, body))
     all_bodies.append(layer_svg(name, b, PAD + 10, PAD + 40 + idx * LAYER_H))
 
 total_h = LAYER_H * len(layers) + 70

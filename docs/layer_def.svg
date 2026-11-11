@@ -64,11 +64,12 @@
 <g><rect class="key" x="692.8" y="196.3" width="48" height="48" rx="7"/><text class="lbl" x="716.8" y="220.3">/</text></g>
 <g><rect class="key" x="746.8" y="196.3" width="48" height="48" rx="7"/><text class="lbl" x="770.8" y="220.3">Win</text></g>
 <g><rect class="key" x="223.0" y="255.7" width="48" height="48" rx="7"/><text class="lbl" x="247.0" y="279.7">Esc</text></g>
-<g transform="rotate(8 306.4 282.4)"><rect class="key kind-layer" x="282.4" y="258.4" width="48" height="48" rx="7"/><text class="lbl small" x="306.4" y="282.4">▼ Lower</text></g>
+<g transform="rotate(8 306.4 282.4)"><rect class="key kind-layer" x="282.4" y="258.4" width="48" height="48" rx="7"/><text class="lbl" x="306.4" y="282.4">▼ Num</text></g>
 <g transform="rotate(18 368.5 295.9)"><rect class="key" x="344.5" y="271.9" width="48" height="48" rx="7"/><text class="lbl" x="368.5" y="295.9">Enter</text></g>
 <g transform="rotate(-18 460.3 295.9)"><rect class="key" x="436.3" y="271.9" width="48" height="48" rx="7"/><text class="lbl" x="460.3" y="295.9">Space</text></g>
-<g transform="rotate(-8 522.4 282.4)"><rect class="key kind-layer" x="498.4" y="258.4" width="48" height="48" rx="7"/><text class="lbl small" x="522.4" y="282.4">▼ Raise</text></g>
+<g transform="rotate(-8 522.4 282.4)"><rect class="key kind-layer" x="498.4" y="258.4" width="48" height="48" rx="7"/><text class="lbl" x="522.4" y="282.4">▼ Sym</text></g>
 <g><rect class="key" x="557.8" y="255.7" width="48" height="48" rx="7"/><text class="lbl" x="581.8" y="279.7">Bksp</text></g>
+<g><rect class="key kind-mouse" x="625.3" y="255.7" width="48" height="48" rx="7"/><text class="lbl small" x="649.3" y="279.7">L Click</text></g>
 <g><rect class="key kind-mouse" x="294.5" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="318.5" y="385.0">L Click</text></g>
 <g><rect class="key kind-toggle" x="356.6" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="380.6" y="385.0">⇄ Scroll</text></g>
 <g><rect class="key kind-mouse" x="418.7" y="361.0" width="48" height="48" rx="7"/><text class="lbl small" x="442.7" y="385.0">R Click</text></g>

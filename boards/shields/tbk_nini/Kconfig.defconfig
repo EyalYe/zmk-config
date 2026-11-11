@@ -1,0 +1,10 @@
+# Both halves are peripherals of the dongle (corne_dongle shield).
+if SHIELD_TBK_NINI_LEFT || SHIELD_TBK_NINI_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_BLE
+    default y
+
+endif

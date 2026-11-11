@@ -1,17 +1,19 @@
 # TBK-MINI-CLICKY + Dongle ZMK config
 
-ZMK firmware for a wireless **Corne (crkbd) split keyboard** with a **USB/BLE dongle**.
-The halves use the Windows keymap, settings and name (`TBK-MINI-CLICKY`) from the
-`windows` branch, with the stock ZMK Corne pinout.
+ZMK firmware for a wireless **TBK Mini split keyboard** (43 keys) with a **USB/BLE dongle**.
+The halves use the TBK pinout (`tbk_nini` shield) and the keymap from the
+`dongle_trackball` branch. The Bluetooth name (`TBK-MINI-CLICKY`) comes from the `windows`
+branch.
 The dongle runs the keymap and connects to the computer. It also has a **PAW3395 optical
 sensor** (for a trackball or mouse) and **5 mouse buttons**.
 
-![Base layer](docs/layer_base.svg)
+![Base layer](docs/layer_def.svg)
 
 ## Contents
 
 - [Hardware](#hardware)
 - [Architecture](#architecture)
+- [Halves pinout](#halves-pinout)
 - [Dongle wiring](#dongle-wiring)
 - [Keymap](#keymap)
 - [Building](#building)
@@ -25,8 +27,8 @@ sensor** (for a trackball or mouse) and **5 mouse buttons**.
 | Part            | Board         | Role                    | Shield         |
 | --------------- | ------------- | ----------------------- | -------------- |
 | Dongle          | nice!nano v2  | Split **central**, connects to the host | `corne_dongle` |
-| Left half       | nice!nano v2  | Split peripheral        | `corne_left`   |
-| Right half      | nice!nano v2  | Split peripheral        | `corne_right`  |
+| Left half       | nice!nano v2  | Split peripheral        | `tbk_nini_left`  |
+| Right half      | nice!nano v2  | Split peripheral        | `tbk_nini_right` |
 
 Other dongle parts:
 
@@ -42,14 +44,13 @@ Other dongle parts:
             │ (peripheral) │        │  (central, owns keymap)   │             └──────────┘
             └──────────────┘        │  • PAW3395 → pointer      │
             ┌──────────────┐  BLE   │  • 5 buttons → keymap     │
-            │  Right half  │ ─────▶ │    positions 42–46        │
+            │  Right half  │ ─────▶ │    positions 43–47        │
             │ (peripheral) │        └───────────────────────────┘
             └──────────────┘
 ```
 
 - Both halves are **peripherals**. They only scan their matrix and send key positions
-  to the dongle. The left half is built with `CONFIG_ZMK_SPLIT_ROLE_CENTRAL=n` to
-  override the stock Corne default.
+  to the dongle. The `tbk_nini` shield never makes a half the central.
 - The dongle is the **central**. It runs the keymap and all behaviors, handles the BT
   profiles, and sends HID reports. It accepts **2** peripherals
   (`ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS=2`).
@@ -60,10 +61,23 @@ Other dongle parts:
 
 ### Key positions
 
-The dongle's matrix transform uses positions **0–41** for the regular 42-key Corne layout.
-Its own buttons are **row 4**, positions **42–46**. A `zmk,kscan-composite` with
+The dongle's matrix transform uses positions **0–42** for the 43-key TBK layout: the
+Corne 3×6 + 3 thumbs per side, plus one extra key on the right half at RC(3,9), outside
+the thumb cluster. Its own buttons are **row 4**, positions **43–47**. A `zmk,kscan-composite` with
 `row-offset = <4>` moves the 5 direct-wired buttons onto that row, so they can't collide
 with the halves' keys.
+
+## Halves pinout
+
+Defined in `boards/shields/tbk_nini/`. Same as a stock Corne except **row 0 is on D8**
+(Corne uses D4), plus the 43rd key. Diodes are col2row.
+
+| Matrix | Pro Micro pins (left half)       | Right half                  |
+| ------ | -------------------------------- | --------------------------- |
+| Rows 0–3 | D8, D5, D6, D7                 | same                        |
+| Cols 0–5 | D21, D20, D19, D18, D15, D14   | mirrored: D14, D15, D18, D19, D20, D21 |
+
+The halves have no trackball. The sensor is on the dongle.
 
 ## Dongle wiring
 
@@ -96,33 +110,50 @@ The sensor runs on `spi2` at 4 MHz, at **800 CPI** by default. See [Customizing]
 
 ## Keymap
 
-Seven layers. The halves have the same bindings as the `windows` branch's `corne.keymap`,
-and each layer adds a row for the 5 dongle buttons. Hold **Lower** or **Raise** for those
-layers; holding **Fn** from either one opens the F-key/underglow layer. The middle dongle
-button toggles the **Scroll** layer, where the sensor scrolls instead of moving the pointer.
+Ten layers, ported from the `dongle_trackball` branch's `tbk_nini.keymap`. Each layer
+adds a row for the 5 dongle buttons.
+
+| Layer | How to reach it | What it has |
+| ----- | --------------- | ----------- |
+| **Base** (DEF) | default | QWERTY; the extra right key is left click |
+| **Num** | hold left middle thumb | numbers, arrows, media, mouse buttons; hold `A` position for Snipe, `G` for Scroll |
+| **Sym** | hold right middle thumb | symbols |
+| **Sys** | Num or Sym + the other middle thumb | F-keys, mouse movement keys, BT profiles 1–5, BT clear all, Alt+F4 |
+| **Game** | combo, see below | WASD shifted one column right, `T` `G` `B` on the outer column |
+| **Game Num** | hold left middle thumb in Game | 1–0 on the left |
+| **One-hand** / **One-hand 2** | combo, see below | hold the left middle thumb to mirror the right half onto the left |
+| **Scroll** | toggle with dongle BTN2, or hold from Num | sensor scrolls instead of moving the pointer |
+| **Snipe** | hold from Num | pointer at ⅓ speed |
 
 Combos (not shown in the images):
 
-| Keys (pressed together)              | Action                         |
-| ------------------------------------ | ------------------------------ |
-| `Shift` `A` `S` (positions 12–14)    | Switch to the **Gaming** layer |
-| `Ctrl` `Z` `X` (positions 24–26)     | Switch back to **Base**        |
+| Keys (pressed together)              | Action                           |
+| ------------------------------------ | -------------------------------- |
+| `Shift` `A` `S` (positions 12–14)    | Switch to the **Game** layer     |
+| `Ctrl` `Z` `X` (positions 24–26)     | Switch back to **Base**          |
+| `Tab` `Q` `W` (positions 0–2)        | Switch to the **One-hand** layer |
 
-In Gaming, hold the middle left thumb key for the **Num** layer. Switching layers with a combo
-also turns scroll mode off.
+Switching layers with a combo also turns scroll mode off.
+
+On `dongle_trackball` the sensor only moved while Num was held. Here the pointer always
+moves, because the sensor is the dongle's main mouse. Snipe is now ⅓ speed. It was a
+speed-up on that branch.
 
 ![Full keymap](docs/keymap.svg)
 
 <details>
 <summary>Individual layers</summary>
 
-![Base](docs/layer_base.svg)
-![Lower](docs/layer_lower.svg)
-![Raise](docs/layer_raise.svg)
-![Fn](docs/layer_fn.svg)
-![Gaming](docs/layer_gaming.svg)
-![Num](docs/layer_gaming_num.svg)
-![Scroll](docs/layer_scroll.svg)
+![Base](docs/layer_def.svg)
+![Num](docs/layer_num.svg)
+![Sym](docs/layer_sym.svg)
+![Sys](docs/layer_sys.svg)
+![Game](docs/layer_game.svg)
+![Game Num](docs/layer_gn.svg)
+![One-hand](docs/layer_onehand.svg)
+![One-hand 2](docs/layer_onehand2.svg)
+![Scroll](docs/layer_scrl.svg)
+![Snipe](docs/layer_snyp.svg)
 
 </details>
 
@@ -138,10 +169,10 @@ Other layers leave them transparent, so they work the same on every layer.
 
 **Scroll mode:** press BTN2 once and moving the sensor scrolls (vertical and horizontal).
 Press BTN2 again to go back to pointer mode. It's a toggle, not a hold, and there is no
-middle click.
+middle click on the dongle. Middle click is on Num and Sys.
 
 > **Bootloader:** this keymap has no bootloader key. To flash any board, double-tap its
-> reset button.
+> reset button. The `Studio` key on Sys does nothing, because ZMK Studio isn't enabled.
 
 The images are generated from the keymap. After editing
 [`config/corne_dongle.keymap`](config/corne_dongle.keymap), regenerate them with:
@@ -158,8 +189,8 @@ Push the branch. The workflow in `.github/workflows/build.yml` builds every entr
 [`build.yaml`](build.yaml) and uploads a `firmware` artifact with:
 
 - `corne_dongle-nice_nano-zmk.uf2`
-- `corne_left-nice_nano-zmk.uf2`
-- `corne_right-nice_nano-zmk.uf2`
+- `tbk_nini_left-nice_nano-zmk.uf2`
+- `tbk_nini_right-nice_nano-zmk.uf2`
 - `settings_reset-nice_nano-zmk.uf2`
 
 ### Local build
@@ -175,14 +206,11 @@ west build -p -s zmk/app -d build/corne_dongle -b nice_nano@2.0.0//zmk -- \
   -DSHIELD=corne_dongle -DZMK_CONFIG=$R/config \
   "-DZMK_EXTRA_MODULES=$R;$PWD/zmk-paw3395-driver"
 
-# Left half (forced to peripheral)
-west build -p -s zmk/app -d build/corne_left -b nice_nano@2.0.0//zmk -- \
-  -DSHIELD=corne_left -DZMK_CONFIG=$R/config -DZMK_EXTRA_MODULES=$R \
-  -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-
-# Right half
-west build -p -s zmk/app -d build/corne_right -b nice_nano@2.0.0//zmk -- \
-  -DSHIELD=corne_right -DZMK_CONFIG=$R/config -DZMK_EXTRA_MODULES=$R
+# Halves
+west build -p -s zmk/app -d build/tbk_left -b nice_nano@2.0.0//zmk -- \
+  -DSHIELD=tbk_nini_left -DZMK_CONFIG=$R/config -DZMK_EXTRA_MODULES=$R
+west build -p -s zmk/app -d build/tbk_right -b nice_nano@2.0.0//zmk -- \
+  -DSHIELD=tbk_nini_right -DZMK_CONFIG=$R/config -DZMK_EXTRA_MODULES=$R
 ```
 
 Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
@@ -191,37 +219,42 @@ Each build writes its firmware to `build/<name>/zephyr/zmk.uf2`.
 
 1. **Flash `settings_reset` to all three boards** (dongle, left, right). This clears old
    bonds. It matters most if the left half used to be the central.
-2. Flash `corne_dongle` to the dongle, `corne_left` to the left half and `corne_right` to
-   the right half. To flash a board: double-tap reset, then copy the `.uf2` to the
+2. Flash `corne_dongle` to the dongle, `tbk_nini_left` to the left half and
+   `tbk_nini_right` to the right half. To flash a board: double-tap reset, then copy the `.uf2` to the
    `NICENANO` drive.
 3. Power the dongle (USB) and both halves. The halves pair with the dongle automatically.
 4. Connect the computer:
    - **USB:** works immediately.
-   - **Bluetooth:** pair with `TBK-MINI-CLICKY`. Lower + `A` `S` `D` `F` `G` selects BT
-     profiles 1–5. `Fn` + the bottom-right key clears all profiles.
+   - **Bluetooth:** pair with `TBK-MINI-CLICKY`. On Sys, the right bottom row selects BT
+     profiles 1–5 and the bottom-right key clears all profiles.
 
 ## Customizing
 
 | What                     | Where                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| Keymap / dongle buttons  | `config/corne_dongle.keymap` (positions 42–46 = last row)    |
+| Keymap / dongle buttons  | `config/corne_dongle.keymap` (positions 43–47 = last row)    |
 | Sensor CPI               | `cpi = <800>;` in `boards/shields/corne_dongle/corne_dongle.overlay` (50–26000, step 50) |
 | Sensor orientation       | uncomment `swap-xy;`, `invert-x;`, `invert-y;` in the overlay |
 | Report rate              | `CONFIG_PAW3395_REPORT_INTERVAL_MIN` in `corne_dongle.conf` (try `8` on USB) |
-| Pins                     | `corne_dongle.overlay` (keep SPI on P0.xx high-frequency pins) |
-| Keyboard / BT name       | `CONFIG_ZMK_KEYBOARD_NAME` in `config/corne.conf` (the dongle loads it too, and it overrides `Kconfig.defconfig`) |
-| Halves' settings         | `config/corne.conf` (loaded by `corne_left`, `corne_right` and the dongle) |
-| Underglow                | uncomment `CONFIG_ZMK_RGB_UNDERGLOW` / `CONFIG_WS2812_STRIP` in `config/corne.conf`; the `Fn` RGB keys do nothing until then |
+| Dongle pins              | `corne_dongle.overlay` (keep SPI on P0.xx high-frequency pins) |
+| Halves' pins             | `boards/shields/tbk_nini/` (`tbk_nini.dtsi` rows, `tbk_nini_left/right.overlay` cols) |
+| Keyboard / BT name       | `ZMK_KEYBOARD_NAME` in `boards/shields/corne_dongle/Kconfig.defconfig` |
+| Halves' settings         | `config/tbk_nini.conf` (the dongle doesn't load it)          |
 | Scroll speed             | `&zip_scroll_scaler 1 16` in `config/corne_dongle.keymap` (bigger divisor = slower) |
+| Snipe speed              | `&zip_xy_scaler 1 3` in `config/corne_dongle.keymap`         |
 
-Ideas: use more ZMK [input processors](https://zmk.dev/docs/keymaps/input-processors), e.g. to
-scale the pointer speed.
+See ZMK [input processors](https://zmk.dev/docs/keymaps/input-processors) for more sensor
+tweaks.
 
 ## Repository layout
 
 ```
 .
 ├── build.yaml                         # CI build matrix (dongle, left, right, reset)
+├── boards/shields/tbk_nini/           # TBK halves shield (43 keys, row 0 on D8)
+│   ├── tbk_nini.dtsi                  # rows, matrix transform
+│   ├── tbk_nini_left/right.overlay    # columns
+│   └── tbk_nini.keymap                # placeholder; halves don't run a keymap
 ├── boards/shields/corne_dongle/       # custom dongle shield
 │   ├── Kconfig.shield
 │   ├── Kconfig.defconfig              # central role, 2 peripherals, keyboard name
@@ -230,9 +263,8 @@ scale the pointer speed.
 │   └── corne_dongle.zmk.yml
 ├── config/
 │   ├── west.yml                       # ZMK + badjeff/zmk-paw3395-driver
-│   ├── corne_dongle.keymap            # the keymap that's actually used (47 keys)
-│   ├── corne.keymap                   # 42-key keymap the half builds need
-│   └── corne.conf                     # applies to the halves
+│   ├── corne_dongle.keymap            # the keymap that's actually used (48 keys)
+│   └── tbk_nini.conf                  # applies to the halves
 ├── docs/                              # generated layout + wiring SVGs
 ├── scripts/gen_layout_svg.py          # regenerates docs/*.svg from the keymap
 └── zephyr/module.yml                  # makes this repo a Zephyr module (custom shield)
@@ -250,5 +282,8 @@ scale the pointer speed.
   (and/or `INPUT_TRANSFORM_X_INVERT`) to the scroller's `input-processors` in
   `corne_dongle.keymap`.
 - **Sensor takes a while to start:** set `CONFIG_PAW3395_INIT_POWER_UP_EXTRA_DELAY_MS`.
-- **Keys on the wrong positions:** the halves must use the stock 6-column Corne transform.
-  `corne_dongle.keymap` must have exactly 47 bindings per layer.
+- **Keys on the wrong positions:** the halves' transform (`tbk_nini.dtsi`) and the first
+  43 entries of `dongle_transform` must match. `corne_dongle.keymap` must have exactly 48
+  bindings per layer.
+- **A whole row is dead:** row 0 is on D8 (TBK), not D4 (Corne). Check your wiring
+  against [Halves pinout](#halves-pinout).

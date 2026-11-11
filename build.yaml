@@ -1,14 +1,13 @@
-# Corne split with a dongle as central.
+# TBK split with a dongle as central.
 # The dongle (nice!nano v2) is the BLE central and hosts a PAW3395 + 5 buttons;
-# both Corne halves (nice!nano v2) are peripherals.
+# both TBK halves (nice!nano v2, tbk_nini shield) are peripherals.
 ---
 include:
   - board: nice_nano@2.0.0//zmk
     shield: corne_dongle
   - board: nice_nano@2.0.0//zmk
-    shield: corne_left
-    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    shield: tbk_nini_left
   - board: nice_nano@2.0.0//zmk
-    shield: corne_right
+    shield: tbk_nini_right
   - board: nice_nano@2.0.0//zmk
     shield: settings_reset
